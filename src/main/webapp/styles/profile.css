@@ -1,0 +1,178 @@
+header {
+    padding: 0.7vw 1vw;
+    height: 60px;
+    background-color: #ededed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #444444;
+    margin-bottom: 0;
+}
+
+.logo {
+	cursor: pointer;
+	margin-left: 2vw;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+body {
+	margin: 0;
+}
+
+main {
+	min-height: 70vh;
+	background: linear-gradient(to top, #a5a5a5 0.5%, white 1%, #ededed);
+	background-size: 100% 15vw;
+	background-repeat: no-repeat;
+}
+
+.main-container {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 6vw;
+}
+
+.main-info {
+	display: flex;
+	flex: 1;
+	max-width: 30vw;
+	padding: 2vw 0;
+	flex-direction: column;
+	align-items: center;
+}
+
+.photo-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.photo {
+	width: 70%;
+	border: 4px solid #a5a5a5;
+	border-radius: 50%;
+	margin-bottom: 1.5em;
+	background-color: white;
+}
+
+.name {
+	font-size: 24px;
+	font-weight: bold;
+	padding: 0.4em;
+	word-wrap: break-word;
+}
+
+.email,
+.date {
+	font-size: 18px;
+	padding: 0.4em;	
+	word-wrap: break-word;
+}
+
+.edit-button {
+	margin-top: 0.4em;
+	padding: 0.4em 1em;
+	font-size: 18px;
+	border-radius: 5px;
+	background-color: #cecece;
+	color: #f3f3f3;
+	font-weight: bold;
+}
+
+.edit-button:hover{
+	background-color: #ffd800;
+	color: #444444;
+	border-color: #ffdd00;
+	cursor: pointer;
+	box-shadow: 0 0 5px gray;
+}
+
+.information {
+	flex: 2;	
+	margin-top: 20vw;
+	margin-bottom: 8vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.element {
+	width: 100%;
+	font-size: 18px;
+	padding: 10px 0;
+	border-bottom: 1px solid black;
+}
+
+.information_item {
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #444444;
+	padding: 0.4em 1em;
+}
+
+.item_description {
+	word-break: break-all;
+	padding: 2px;
+}
+
+footer {
+	height: 23vh;
+	background-color: #666666;
+	display: flex;
+	flex-flow: column nowrap;
+	color: white;
+}
+
+.linksMenu {
+	width: 100%;
+	display: flex;
+	flex: 2;
+	font-size: 1.7vw;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.link {
+	cursor: pointer;
+}
+
+.link:hover {
+	text-decoration: underline;
+}
+
+.TM {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.3vw;
+}
+
+@media (max-width: 980px) {
+
+	.main-container {
+		flex-direction: column;
+		padding: 0 10vw;
+	}
+
+	.main-info {
+		max-width: 100%;
+	}
+
+	.name {
+		font-size: 18px;
+	}
+
+	.email {
+		font-size: 16px;
+	}
+
+	.information {
+		margin-top: 4vh;
+	}
+
+}
+
