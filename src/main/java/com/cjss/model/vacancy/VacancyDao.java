@@ -11,7 +11,7 @@ public interface VacancyDao {
     Vacancy getVacancy(int id) throws NotFoundException;
     List<Vacancy> findVacancy();
     List<Vacancy> findVacancy(String query);
-    List<Vacancy> findVacancy(Company company);
+    List<Vacancy> findVacancyByCompany (String companyName);
     List<Vacancy> findVacancy(List<Skill> skills);
     void addVacancy(Vacancy vacancy);
     void deleteVacancy(Vacancy vacancy);

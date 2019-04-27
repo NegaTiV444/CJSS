@@ -4,7 +4,6 @@ import com.cjss.model.company.Company;
 import com.cjss.model.company.CompanyDao;
 import com.cjss.model.company.MySqlCompanyDao;
 import com.cjss.model.exceptions.AlreadyRegisteredException;
-import com.cjss.model.exceptions.NotFoundException;
 import com.cjss.utils.HashService;
 
 import javax.servlet.ServletException;
@@ -31,17 +30,17 @@ public class CompanyRegistrationPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Company newCompany = getCompanyFromRequest(req);
-            try {
-                companyDao.addCompany(newCompany);
-                HttpSession session = req.getSession();
-                session.setAttribute("email", newCompany.getEmail());
-                session.setAttribute("password", hashService.getHashAsString(newCompany.getPassword()));
-                resp.sendRedirect("profile");
-            } catch (AlreadyRegisteredException e) {
-                resp.sendRedirect("registration-company?registerMsg="+THIS_NAME_OR_EMAIL_IS_ALREADY_TAKEN_ERROR+
-                        "&name="+newCompany.getName()+"&phone="+newCompany.getPhone()+"&city="+newCompany.getCity()+
-                        "&site="+newCompany.getSite()+"&email="+newCompany.getEmail());
-            }
+        try {
+            companyDao.addCompany(newCompany);
+            HttpSession session = req.getSession();
+            session.setAttribute("email", newCompany.getEmail());
+            session.setAttribute("password", hashService.getHashAsString(newCompany.getPassword()));
+            resp.sendRedirect("profile");
+        } catch (AlreadyRegisteredException e) {
+            resp.sendRedirect("registration-company?registerMsg=" + THIS_NAME_OR_EMAIL_IS_ALREADY_TAKEN_ERROR +
+                    "&name=" + newCompany.getName() + "&phone=" + newCompany.getPhone() + "&city=" + newCompany.getCity() +
+                    "&site=" + newCompany.getSite() + "&email=" + newCompany.getEmail());
+        }
     }
 
     private Company getCompanyFromRequest(HttpServletRequest req) {

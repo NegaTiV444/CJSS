@@ -10,7 +10,7 @@ public class Vacancy {
 
     private long id;
     private String position;
-    private Company company;
+    private String companyName;
     private String location;
     private String description;
 
@@ -19,9 +19,9 @@ public class Vacancy {
     public Vacancy() {
     }
 
-    public Vacancy(String position, Company company, String location, String description) {
+    public Vacancy(String position, String companyName, String location, String description) {
         this.position = position;
-        this.company = company;
+        this.companyName = companyName;
         this.location = location;
         this.description = description;
     }
@@ -38,20 +38,20 @@ public class Vacancy {
         this.position = position;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
     public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getDescription() {

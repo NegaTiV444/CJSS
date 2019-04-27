@@ -23,17 +23,17 @@ public class CompanyProfilePageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String email = (String)session.getAttribute(EMAIL_KEY);
-        String password = (String)session.getAttribute(PASSWORD_KEY);
-        if ((email != null) && (password != null)){
+        String email = (String) session.getAttribute(EMAIL_KEY);
+        String password = (String) session.getAttribute(PASSWORD_KEY);
+        if ((email != null) && (password != null)) {
             Company company = null;
             try {
                 company = companyDao.getCompany(email);
-            } catch (NotFoundException e){
+            } catch (NotFoundException e) {
                 resp.sendRedirect("registration-company?loginMsg=wrong.email.error");
                 return;
             }
-            if (company.getPassword().equals(password)){
+            if (company.getPassword().equals(password)) {
                 req.setAttribute(COMPANY_KEY, company);
                 req.getRequestDispatcher("/WEB-INF/pages/companyProfile.jsp").forward(req, resp);
             } else {

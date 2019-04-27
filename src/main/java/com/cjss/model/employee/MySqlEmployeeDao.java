@@ -125,7 +125,6 @@ public class MySqlEmployeeDao implements EmployeeDao {
         } catch (SQLException e) {
             System.exit(-1);
         }
-
     }
 
     private Employee getEmployeeFromResultSet(ResultSet resultSet) throws SQLException {

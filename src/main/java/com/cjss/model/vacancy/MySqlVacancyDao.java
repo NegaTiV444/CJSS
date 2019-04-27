@@ -1,7 +1,9 @@
 package com.cjss.model.vacancy;
 
 import com.cjss.model.company.Company;
+import com.cjss.model.company.CompanyDao;
 import com.cjss.model.company.MySqlCompanyDao;
+import com.cjss.model.employee.Employee;
 import com.cjss.model.enums.Skill;
 import com.cjss.model.exceptions.NotFoundException;
 import com.cjss.utils.JDBCService;
@@ -11,7 +13,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.ToIntFunction;
+import java.util.stream.Collectors;
 
 public class MySqlVacancyDao implements VacancyDao {
 
@@ -29,7 +35,7 @@ public class MySqlVacancyDao implements VacancyDao {
         }
     }
 
-    public static MySqlVacancyDao newInstance() {
+    public static MySqlVacancyDao getInstance() {
         return SingletonHandler.INSTANCE;
     }
 
@@ -66,25 +72,63 @@ public class MySqlVacancyDao implements VacancyDao {
             resultSet.close();
         } catch (SQLException e) {
             System.exit(-1);
-        } catch (NotFoundException e) {
-            e.printStackTrace();
         }
         return result;
     }
 
     @Override
     public List<Vacancy> findVacancy(String query) {
-        return null;
+        List<Vacancy> vacancies = findVacancy();
+        List<Vacancy> result;
+        String[] terms = query.trim().split(" +");
+        result = vacancies.stream()
+                .filter(vacancy -> Arrays.stream(terms)
+                        .anyMatch(vacancy.getCompanyName()::contains))
+                .collect(Collectors.toList());
+        result.addAll(vacancies.stream()
+                .filter(vacancy -> Arrays.stream(terms)
+                        .anyMatch(vacancy.getLocation()::contains))
+                .collect(Collectors.toList()));
+        result.addAll(vacancies.stream()
+                .filter(vacancy -> Arrays.stream(terms)
+                        .anyMatch(vacancy.getPosition()::contains))
+                .collect(Collectors.toList()));
+        result.addAll(vacancies.stream()
+                .filter(vacancy -> Arrays.stream(terms)
+                        .anyMatch(vacancy.getDescription()::contains))
+                .collect(Collectors.toList()));
+        return result;
     }
 
     @Override
-    public List<Vacancy> findVacancy(Company company) {
-        return null;
+    public List<Vacancy> findVacancyByCompany(String companyName) {
+        List<Vacancy> result = new ArrayList<>();
+        ResultSet resultSet;
+        try {
+            String query = "SELECT * FROM " + TABLE + " WHERE companyName = '" + companyName + "' ;";
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                result.add(getVacancyFromResultSet(resultSet));
+            }
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            System.exit(-1);
+        }
+        return result;
     }
 
     @Override
     public List<Vacancy> findVacancy(List<Skill> skills) {
-        return null;
+        List<Vacancy> vacancies = findVacancy();
+        ToIntFunction<Vacancy> getNumberOfTerms = vacancy -> (int) skills.stream()
+                .filter(vacancy.getRequiredSkills()::contains)
+                .count();
+
+        return vacancies.stream()
+                .filter(vacancy -> skills.stream().anyMatch(vacancy.getRequiredSkills()::contains))
+                .sorted(Comparator.comparingInt(getNumberOfTerms).reversed())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -101,7 +145,7 @@ public class MySqlVacancyDao implements VacancyDao {
             }
             query = "INSERT INTO " + TABLE + " (position, companyName, location, description, skills) VALUES " +
                     "( '" + vacancy.getPosition() + "', '" +
-                    vacancy.getCompany().getName() + "', '" + vacancy.getLocation() + "', '" + vacancy.getDescription() +
+                    vacancy.getCompanyName() + "', '" + vacancy.getLocation() + "', '" + vacancy.getDescription() +
                     "', '" + skillsStr.toString() + "' );";
             PreparedStatement statement = jdbcService.getConnection().prepareStatement(query,
                     Statement.RETURN_GENERATED_KEYS);
@@ -129,12 +173,17 @@ public class MySqlVacancyDao implements VacancyDao {
 
     @Override
     public void deleteVacancy(Vacancy vacancy) {
-
+        try {
+            String query = "DELETE FROM " + TABLE + " WHERE id = '" + vacancy.getId() + "' ;";
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            System.exit(-1);
+        }
     }
 
-    private Vacancy getVacancyFromResultSet(ResultSet resultSet) throws SQLException, NotFoundException {
+    private Vacancy getVacancyFromResultSet(ResultSet resultSet) throws SQLException {
         Vacancy vacancy = new Vacancy();
-        vacancy.setCompany(companyDao.getCompany(resultSet.getString("companyName")));
+        vacancy.setCompanyName(resultSet.getString("companyName"));
         vacancy.setDescription(resultSet.getString("description"));
         vacancy.setLocation(resultSet.getString("location"));
         vacancy.setPosition(resultSet.getString("position"));
