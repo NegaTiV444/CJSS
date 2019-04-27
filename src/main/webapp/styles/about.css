@@ -25,7 +25,7 @@ body {
 
 main {
     min-height: 70vh;
-    background: url(background.jpg);
+    background: url(/cjss/images/background.jpg);
     background-size: cover;
 }
 
@@ -54,7 +54,7 @@ main {
 }
 
 .description {
-    color: #5D8AA8;
+    color: #5b5b5b;
     padding-top: 1em;
     text-align: center;
     font-size: 1.2em;

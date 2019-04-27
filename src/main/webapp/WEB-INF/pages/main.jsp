@@ -27,7 +27,7 @@
             </div>
             <div class="main-btns">
                 <div class="element">
-                    <a href="<c:url value="/registration"/>"><span>Place resume</span></a>
+                    <a href="<c:url value="/registration-employee"/>"><span>Place resume</span></a>
                 </div>
                 <a href="<c:url value="/post-vacancy"/>">
                     <div class="element">

@@ -25,9 +25,8 @@ body {
 
 main {
 	min-height: 70vh;
-	background: linear-gradient(to top, #a5a5a5 0.5%, white 1%, #ededed);
 	background-size: 100% 15vw;
-	background-repeat: no-repeat;
+	background: linear-gradient(to top, #a5a5a5 0.5%, white 1%, #ededed) no-repeat;
 }
 
 .main-container {

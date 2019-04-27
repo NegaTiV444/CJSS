@@ -91,6 +91,11 @@ main h1 {
     font-size: 1.7vw;
 }
 
+.name:hover {
+    color: #ffd800;
+    cursor: pointer;
+}
+
 .el {
     padding: 0.4vw 0
 }

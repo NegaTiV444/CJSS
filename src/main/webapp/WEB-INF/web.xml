@@ -19,12 +19,21 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
-        <url-pattern>/registration</url-pattern>
+        <url-pattern>/registration-employee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employee-profile</servlet-name>
+        <servlet-class>com.cjss.web.EmployeeProfilePageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employee-profile</servlet-name>
+        <url-pattern>/profile/employee</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>profile</servlet-name>
-        <servlet-class>com.cjss.web.EmployeeProfilePageServlet</servlet-class>
+        <servlet-class>com.cjss.web.ProfileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>profile</servlet-name>
@@ -38,6 +47,24 @@
     <servlet-mapping>
         <servlet-name>editProfile</servlet-name>
         <url-pattern>/edit-profile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>register-cmp</servlet-name>
+        <servlet-class>com.cjss.web.CompanyRegistrationPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>register-cmp</servlet-name>
+        <url-pattern>/registration-company</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>profile-cmp</servlet-name>
+        <servlet-class>com.cjss.web.CompanyProfilePageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>profile-cmp</servlet-name>
+        <url-pattern>/profile/company</url-pattern>
     </servlet-mapping>
 
     <servlet>

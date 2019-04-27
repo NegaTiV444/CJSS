@@ -11,6 +11,29 @@ public class Employee {
     private String password;
 
     private String name;
+    private int inSearch = 1;
+    private String education;
+    private String experience;
+    private String hobbies;
+    private String other;
+    private String birthDate;
+    private List<Skill> skills;
+    private List<String> messages;
+
+    {
+        education = "";
+        experience = "";
+        hobbies = "";
+        other = "";
+        birthDate = "";
+        skills = new ArrayList<>();
+        messages = new ArrayList<>();
+    }
+
+    public Employee(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     public String getEmail() {
         return email;
@@ -19,14 +42,6 @@ public class Employee {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    private int inSearch = 1;
-
-    private String education;
-    private String experience;
-    private String hobbies;
-    private String other;
-    private String birthDate;
 
     public String getBirthDate() {
         return birthDate;
@@ -58,32 +73,6 @@ public class Employee {
 
     public void setOther(String other) {
         this.other = other;
-    }
-
-    private List<Skill> skills;
-
-    private List<String> messages;
-
-    public Employee() {
-        education = "";
-        experience = "";
-        hobbies = "";
-        other = "";
-        birthDate = "";
-        skills = new ArrayList<>();
-        messages = new ArrayList<>();
-    }
-
-    public Employee(String email, String password) {
-        education = "";
-        experience = "";
-        hobbies = "";
-        other = "";
-        birthDate = "";
-        this.email = email;
-        this.password = password;
-        skills = new ArrayList<>();
-        messages = new ArrayList<>();
     }
 
     public String getPassword() {

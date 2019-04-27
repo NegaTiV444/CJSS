@@ -19,26 +19,28 @@
                 <c:if test="${not empty param.loginMsg}">
                     <c:choose>
                         <c:when test="${param.loginMsg == 'wrong.email.error'}">
-                            <p style="color:red">Account with such email doesn't exist</p>
+                            <p style="color:red">Account with such email doesn't exist  </p>
                         </c:when>
                         <c:when test="${param.loginMsg == 'wrong.password.error'}">
-                            <p style="color:red">Wrong password</p>
+                            <p style="color:red">Wrong password  </p>
                         </c:when>
                     </c:choose>
                 </c:if>
                 <div class="element">
-                    <input type="email" name="email" placeholder="E-mail">
+                    <input type="email" name="email" placeholder="E-mail" required>
                 </div>
                 <div class="element">
-                    <input type="password" name="password" placeholder="Password">
+                    <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="element">
                     <input class="loginbutton" type="submit" name="login" value="Log In">
                 </div>
+                <input type="hidden" name="type" value="employee">
             </section>
         </header>
     </form>
 </div>
+<a href="<c:url value="/registration-company"/>"><button>I'm a company</button></a>
 <main>
     <div class="container">
         <form method="post" id="register-form">

@@ -1,7 +1,9 @@
 package com.cjss.utils;
 
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class JDBCService {
 
@@ -12,7 +14,7 @@ public class JDBCService {
     private Connection connection;
 
 
-    private JDBCService(){
+    private JDBCService() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -21,16 +23,15 @@ public class JDBCService {
         }
     }
 
-    private static class SingletonHandler {
-        static final JDBCService instance = new JDBCService();
-    }
-
-    public static JDBCService newInstance() {
+    public static JDBCService getInstance() {
         return JDBCService.SingletonHandler.instance;
     }
 
-
     public Connection getConnection() {
         return connection;
+    }
+
+    private static class SingletonHandler {
+        static final JDBCService instance = new JDBCService();
     }
 }

@@ -2,6 +2,8 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<jsp:useBean id="employee" type="com.cjss.model.employee.Employee" scope="request"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,15 +23,15 @@
             <div class="photo-container">
                 <img class="photo" src="${pageContext.servletContext.contextPath}/images/pro.png">
             </div>
-            <div class="name">${requestScope.name}</div>
-            <div class="email">${requestScope.email}</div>
-            <div class="date">${requestScope.birthDate}</div>
+            <div class="name">${employee.name}</div>
+            <div class="email">${employee.email}</div>
+            <div class="date">${employee.birthDate}</div>
             <div class="edit-button">Edit <i class="far fa-edit"></i></div>
         </div>
         <div class="information">
             <div class="element">
                 <div class="information_item">Education</div>
-                <div class="item_description">${requestScope.education}</div>
+                <div class="item_description">${employee.education}</div>
             </div>
             <div class="element">
                 <div class="information_item">Skills</div>
@@ -37,11 +39,11 @@
             </div>
             <div class="element">
                 <div class="information_item">Experience</div>
-                <span class="item_description">${requestScope.experience}</span>
+                <span class="item_description">${employee.experience}</span>
             </div>
             <div class="element">
                 <div class="information_item">Hobbies</div>
-                <div class="item_description">${requestScope.hobbies}</div>
+                <div class="item_description">${employee.hobbies}</div>
             </div>
         </div>
     </div>

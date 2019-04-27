@@ -4,7 +4,7 @@ import com.cjss.model.employee.Employee;
 import com.cjss.model.employee.EmployeeDao;
 import com.cjss.model.employee.MySqlEmployeeDao;
 import com.cjss.model.enums.Skill;
-import com.cjss.model.exceptions.UserNotFoundException;
+import com.cjss.model.exceptions.NotFoundException;
 import com.cjss.utils.HashService;
 
 import javax.servlet.ServletException;
@@ -26,7 +26,7 @@ public class EmployeeRegistrationPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/pages/registration.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/employeeRegistration.jsp").forward(req, resp);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class EmployeeRegistrationPageServlet extends HttpServlet {
         try {
             employeeDao.getEmployee(employee.getEmail());
             return true;
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             return false;
         }
     }

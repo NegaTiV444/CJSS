@@ -1,20 +1,32 @@
 package com.cjss.model.vacancy;
 
+import com.cjss.model.company.Company;
 import com.cjss.model.enums.Skill;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Vacancy {
 
+    private long id;
     private String position;
-    private String companyName;
+    private Company company;
     private String location;
     private String description;
 
-    private Set<Skill> requiredSkills;
+    private List<Skill> requiredSkills = new ArrayList<>();
 
-    public Set<Skill> getRequiredSkills() {
+    public Vacancy() {
+    }
+
+    public Vacancy(String position, Company company, String location, String description) {
+        this.position = position;
+        this.company = company;
+        this.location = location;
+        this.description = description;
+    }
+
+    public List<Skill> getRequiredSkills() {
         return requiredSkills;
     }
 
@@ -26,12 +38,12 @@ public class Vacancy {
         this.position = position;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public String getLocation() {
@@ -50,14 +62,11 @@ public class Vacancy {
         this.description = description;
     }
 
-    public Vacancy() {
-        requiredSkills = new HashSet<>();
+    public long getId() {
+        return id;
     }
 
-    public Vacancy(String position, String companyName, String location, String description) {
-        this.position = position;
-        this.companyName = companyName;
-        this.location = location;
-        this.description = description;
+    public void setId(long id) {
+        this.id = id;
     }
 }
