@@ -9,16 +9,7 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/main.css">
 </head>
 <body>
-<header>
-    <div class="logo">
-        <a href="<c:url value="/"/>"><h1>C.J.S.S.</h1></a>
-    </div>
-    <div>
-        <a href="<c:url value="/profile"/>">
-            <img class="profile_photo" src="${pageContext.servletContext.contextPath}/images/pro.png">
-        </a>
-    </div>
-</header>
+<tags:header/>
 <main>
     <section class="menu_section">
         <div class="container">
@@ -40,7 +31,7 @@
     <section class="sum">
         <a href="<c:url value="/vacancies"/>">
             <div class="el">
-                <div class="count">4</div>
+                <div class="count">${requestScope.vacancies}</div>
                 <div class="item">Vacancies</div>
             </div>
         </a>
@@ -51,7 +42,7 @@
             </div>
         </a>
         <div class="el">
-            <div class="count">1</div>
+            <div class="count">${requestScope.companies}</div>
             <div class="item">Companies</div>
         </div>
     </section>

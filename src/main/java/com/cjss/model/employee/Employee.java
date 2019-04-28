@@ -2,10 +2,11 @@ package com.cjss.model.employee;
 
 import com.cjss.model.enums.Skill;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Employee {
+public class Employee implements Serializable {
 
     private String email;
     private String password;

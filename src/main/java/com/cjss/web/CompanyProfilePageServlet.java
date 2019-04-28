@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class CompanyProfilePageServlet extends HttpServlet {
 
+    private static final String CURRENT_USER_KEY = "current user";
     private static final String COMPANY_KEY = "company";
     private static final String EMAIL_KEY = "email";
     private static final String PASSWORD_KEY = "password";
@@ -23,24 +24,25 @@ public class CompanyProfilePageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String email = (String)session.getAttribute(EMAIL_KEY);
-        String password = (String)session.getAttribute(PASSWORD_KEY);
-        if ((email != null) && (password != null)){
+        String email = (String) session.getAttribute(EMAIL_KEY);
+        String password = (String) session.getAttribute(PASSWORD_KEY);
+        if ((email != null) && (password != null)) {
             Company company = null;
             try {
                 company = companyDao.getCompany(email);
-            } catch (NotFoundException e){
-                resp.sendRedirect("registration-company?loginMsg=wrong.email.error");
+            } catch (NotFoundException e) {
+                resp.sendRedirect("../registration-company?loginMsg=wrong.email.error");
                 return;
             }
-            if (company.getPassword().equals(password)){
+            if (company.getPassword().equals(password)) {
+                req.getSession().setAttribute(CURRENT_USER_KEY, company);
                 req.setAttribute(COMPANY_KEY, company);
                 req.getRequestDispatcher("/WEB-INF/pages/companyProfile.jsp").forward(req, resp);
             } else {
-                resp.sendRedirect("registration-company?loginMsg=wrong.password.error");
+                resp.sendRedirect("../registration-company?loginMsg=wrong.password.error");
             }
         } else {
-            resp.sendRedirect("registration-company");
+            resp.sendRedirect("../registration-company");
         }
     }
 

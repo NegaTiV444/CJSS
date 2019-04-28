@@ -69,11 +69,10 @@ public class EmployeeRegistrationPageServlet extends HttpServlet {
         }
     }
 
-    private List<Skill> parseSkills(HttpServletRequest request){
+    private List<Skill> parseSkills(HttpServletRequest request) {
         List<Skill> result = new ArrayList<>();
         String tmp;
-        final String SELECTED = "selected";
-        for (Skill skill : Skill.values()){
+        for (Skill skill : Skill.values()) {
             tmp = request.getParameter(skill.toString());
             if (tmp != null)
                 result.add(skill);

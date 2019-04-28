@@ -14,10 +14,20 @@
 <body>
 <header>
     <div class="logo">
-        <a href="<c:url value="/"/>"><h1>C.J.S.S.</h1></a>
+        <a href="<c:url value="/main"/>"><h1>C.J.S.S.</h1></a>
+    </div>
+    <div class="logout">
+        <form action="<c:url value="/main"/>" method="post">
+            <button>Logout</button>
+        </form>
     </div>
 </header>
 <main>
+    <div class="logout">
+        <form action="<c:url value="/vacancies"/>" method="post">
+            <button>Find vacancies for me</button>
+        </form>
+    </div>
     <div class="main-container">
         <div class="main-info">
             <div class="photo-container">
@@ -26,7 +36,7 @@
             <div class="name">${employee.name}</div>
             <div class="email">${employee.email}</div>
             <div class="date">${employee.birthDate}</div>
-            <div class="edit-button">Edit <i class="far fa-edit"></i></div>
+            <div class="edit-button">Edit <i class="far fa-edit"></i></div>   <%--TODO profile edit--%>
         </div>
         <div class="information">
             <div class="element">
