@@ -16,6 +16,11 @@
     <div class="logo">
         <a href="<c:url value="/"/>"><h1>C.J.S.S.</h1></a>
     </div>
+    <div class="logout">
+        <form action="<c:url value="/main"/>" method="post">
+            <button>Logout</button>
+        </form>
+    </div>
 </header>
 <main>
     <a href="<c:url value="/profile/company"/>">  <%--TODO profile edit--%>
@@ -60,9 +65,13 @@
         </div>
         <div class="description">
             <div class="desc-title">${company.address}</div>
-            <div class="desc-info">
-                ${company.description}
-            </div>
+            <div class="desc-info">${company.description}</div>
+        </div>
+        <div class="company-contacts">
+            <div class="desc-title">Contacts</div>
+            <div class="site"><a href="http://${company.site}">${company.site}</a></div>
+            <div class="email">${company.email}</div>
+            <div class="phone">${company.phone}</div>
         </div>
     </section>
 </main>

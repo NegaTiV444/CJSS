@@ -12,10 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
@@ -78,23 +75,32 @@ public class MySqlVacancyDao implements VacancyDao {
     @Override
     public List<Vacancy> findVacancy(String query) {
         List<Vacancy> vacancies = findVacancy();
+        if (query == null) {
+            return vacancies;
+        }
         List<Vacancy> result;
-        String[] terms = query.trim().split(" +");
+        String[] terms = query.toLowerCase().trim().split(" +");
         result = vacancies.stream()
                 .filter(vacancy -> Arrays.stream(terms)
-                        .anyMatch(vacancy.getCompanyName()::contains))
+                        .anyMatch(vacancy.getCompanyName().toLowerCase()::contains))
                 .collect(Collectors.toList());
+        Set<Vacancy> vacancySet = new HashSet<>(result);
         result.addAll(vacancies.stream()
+                .filter(vacancy -> !vacancySet.contains(vacancy))
                 .filter(vacancy -> Arrays.stream(terms)
-                        .anyMatch(vacancy.getLocation()::contains))
+                        .anyMatch(vacancy.getLocation().toLowerCase()::contains))
                 .collect(Collectors.toList()));
+        vacancySet.addAll(result);
         result.addAll(vacancies.stream()
+                .filter(vacancy -> !vacancySet.contains(vacancy))
                 .filter(vacancy -> Arrays.stream(terms)
-                        .anyMatch(vacancy.getPosition()::contains))
+                        .anyMatch(vacancy.getPosition().toLowerCase()::contains))
                 .collect(Collectors.toList()));
+        vacancySet.addAll(result);
         result.addAll(vacancies.stream()
+                .filter(vacancy -> !vacancySet.contains(vacancy))
                 .filter(vacancy -> Arrays.stream(terms)
-                        .anyMatch(vacancy.getDescription()::contains))
+                        .anyMatch(vacancy.getDescription().toLowerCase()::contains))
                 .collect(Collectors.toList()));
         return result;
     }
@@ -142,7 +148,7 @@ public class MySqlVacancyDao implements VacancyDao {
                     skillsStr.append(" ");
                 }
             }
-            if (!vacancy.getRequiredSkills().isEmpty()) {
+            if (vacancy.getRequiredSkills().size() > 1) {
                 skillsStr.append(vacancy.getRequiredSkills().get(vacancy.getRequiredSkills().size() - 1).toString());
             }
             query = "INSERT INTO " + TABLE + " (position, companyName, location, description, skills, conditions) VALUES " +

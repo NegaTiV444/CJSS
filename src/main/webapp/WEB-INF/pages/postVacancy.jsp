@@ -21,55 +21,55 @@
                 <div>Skills</div>
                 <div class="lang">
                     <div>
-                        <input type="checkbox" name="java" id="java">
+                        <input type="checkbox" name="JAVA" id="java">
                         <label for="java">Java</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="python" id="python">
+                        <input type="checkbox" name="PYTHON" id="python">
                         <label for="java">Python</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="c" id="c">
+                        <input type="checkbox" name="C" id="c">
                         <label for="java">C</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="cpp" id="cpp">
+                        <input type="checkbox" name="CPP" id="cpp">
                         <label for="java">CPP</label>
                     </div>
                 </div>
                 <div class="lang">
                     <div>
-                        <input type="checkbox" name=".net" id=".net">
+                        <input type="checkbox" name="DOTNET" id=".net">
                         <label for="java">.NET</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="js" id="js">
+                        <input type="checkbox" name="JS" id="js">
                         <label for="java">JS</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="htmlcss" id="htmlcss">
+                        <input type="checkbox" name="HTMLCSS" id="htmlcss">
                         <label for="java">HTML & CSS</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="php" id="php">
+                        <input type="checkbox" name="PHP" id="php">
                         <label for="java">PHP</label>
                     </div>
                 </div>
                 <div class="lang">
                     <div>
-                        <input type="checkbox" name="delphy" id="delphy">
+                        <input type="checkbox" name="DELPHY" id="delphy">
                         <label for="java">Delphy</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="ruby" id="ruby">
+                        <input type="checkbox" name="RUBY" id="ruby">
                         <label for="java">Ruby</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="swift" id="swift">
+                        <input type="checkbox" name="SWIFT" id="swift">
                         <label for="java">Swift</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="android" id="android">
+                        <input type="checkbox" name="ANDROID" id="android">
                         <label for="java">Android</label>
                     </div>
                 </div>

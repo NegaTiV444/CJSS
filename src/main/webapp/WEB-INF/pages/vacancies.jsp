@@ -9,12 +9,19 @@
 <head>
     <title>Vacancies</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/styles/vacancies.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
 <tags:header/>
 <main>
     <h1>Vacancies</h1>
+    <div  class="content">
+        <form>
+            <input type="text" name="query" value="${param.query}">
+            <button> Find</button>
+        </form>
+    </div>
     <section class="content">
         <c:forEach var="vacancy" items="${vacancies}">
             <article class="vacancy">

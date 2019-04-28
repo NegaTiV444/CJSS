@@ -31,7 +31,7 @@
     <section class="sum">
         <a href="<c:url value="/vacancies"/>">
             <div class="el">
-                <div class="count">4</div>
+                <div class="count">${requestScope.vacancies}</div>
                 <div class="item">Vacancies</div>
             </div>
         </a>
@@ -42,7 +42,7 @@
             </div>
         </a>
         <div class="el">
-            <div class="count">1</div>
+            <div class="count">${requestScope.companies}</div>
             <div class="item">Companies</div>
         </div>
     </section>

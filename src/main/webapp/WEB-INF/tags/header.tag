@@ -4,7 +4,7 @@
 
 <header>
     <div class="logo">
-        <a href="<c:url value="/"/>"><h1>C.J.S.S.</h1></a>
+        <a href="<c:url value="/main"/>"><h1>C.J.S.S.</h1></a>
     </div>
     <div>
         <a href="<c:url value="/profile"/>">

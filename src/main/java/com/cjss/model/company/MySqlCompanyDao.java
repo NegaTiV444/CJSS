@@ -41,7 +41,6 @@ public class MySqlCompanyDao implements CompanyDao {
             while (resultSet.next()) {
                 result.add(getCompanyFromResultSet(resultSet));
             }
-            statement.close();
             resultSet.close();
         } catch (SQLException e) {
             System.exit(-1);
@@ -113,7 +112,7 @@ public class MySqlCompanyDao implements CompanyDao {
         company.setOrg(resultSet.getString("org"));
         company.setEmail(resultSet.getString("email"));
         company.setPhone(resultSet.getString("phone"));
-        company.setSite(resultSet.getString("city"));
+        company.setSite(resultSet.getString("site"));
         company.setAddress(resultSet.getString("address"));
         company.setDescription(resultSet.getString("description"));
         company.setEmployeesCount(resultSet.getInt("ecount"));

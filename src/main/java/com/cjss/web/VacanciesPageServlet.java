@@ -13,12 +13,20 @@ import java.util.List;
 
 public class VacanciesPageServlet extends HttpServlet {
 
+    private static final String VACANCIES_KEY = "vacancies";
+
     private final VacancyDao vacancyDao = MySqlVacancyDao.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Vacancy> vacancies = vacancyDao.findVacancy();
-        req.setAttribute("vacancies", vacancies);
+        String query = req.getParameter("query");
+        List<Vacancy> vacancies = vacancyDao.findVacancy(query);
+        req.setAttribute(VACANCIES_KEY, vacancies);
         req.getRequestDispatcher("/WEB-INF/pages/vacancies.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }

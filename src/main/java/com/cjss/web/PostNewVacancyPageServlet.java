@@ -22,16 +22,21 @@ public class PostNewVacancyPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Company company = (Company)req.getSession().getAttribute(CURRENT_USER_KEY);
-        if (company == null) {
+        Company company = null;
+        try {
+            company = (Company)req.getSession().getAttribute(CURRENT_USER_KEY);
+            if (company == null) {
+                resp.sendRedirect("registration-company");
+            } else {
+                req.getRequestDispatcher("/WEB-INF/pages/postVacancy.jsp").forward(req, resp);
+            }
+        } catch (ClassCastException e) {
             resp.sendRedirect("registration-company");
-        } else {
-            req.getRequestDispatcher("/WEB-INF/pages/postVacancy.jsp").forward(req, resp);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Vacancy vacancy = new Vacancy();
         Company company = (Company)req.getSession().getAttribute(CURRENT_USER_KEY);
         vacancy.setCompanyName(company.getName());
