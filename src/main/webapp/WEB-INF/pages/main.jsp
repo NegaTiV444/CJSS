@@ -9,16 +9,7 @@
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/main.css">
 </head>
 <body>
-<header>
-    <div class="logo">
-        <a href="<c:url value="/"/>"><h1>C.J.S.S.</h1></a>
-    </div>
-    <div>
-        <a href="<c:url value="/profile"/>">
-            <img class="profile_photo" src="${pageContext.servletContext.contextPath}/images/pro.png">
-        </a>
-    </div>
-</header>
+<tags:header/>
 <main>
     <section class="menu_section">
         <div class="container">

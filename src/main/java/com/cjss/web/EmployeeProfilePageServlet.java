@@ -16,6 +16,7 @@ import java.util.List;
 
 public class EmployeeProfilePageServlet extends HttpServlet {
 
+    private static final String CURRENT_USER_KEY = "current user";
     private static final String EMPLOYEE_KEY = "employee";
     private static final String EMAIL_KEY = "email";
     private static final String PASSWORD_KEY = "password";
@@ -33,18 +34,19 @@ public class EmployeeProfilePageServlet extends HttpServlet {
             try {
                 employee = employeeDao.getEmployee(email);
             } catch (NotFoundException e) {
-                resp.sendRedirect("registration-employee?loginMsg=wrong.email.error");
+                resp.sendRedirect("../registration-employee?loginMsg=wrong.email.error");
                 return;
             }
             if (employee.getPassword().equals(password)) {
+                req.getSession().setAttribute(CURRENT_USER_KEY, employee);
                 req.setAttribute(EMPLOYEE_KEY, employee);
                 req.setAttribute(SKILLS_KEY, getSkillsString(employee.getSkills()));
                 req.getRequestDispatcher("/WEB-INF/pages/employeeProfile.jsp").forward(req, resp);
             } else {
-                resp.sendRedirect("registration-employee?loginMsg=wrong.password.error");
+                resp.sendRedirect("../registration-employee?loginMsg=wrong.password.error");
             }
         } else {
-            resp.sendRedirect("registration-employee");
+            resp.sendRedirect("../registration-employee");
         }
     }
 

@@ -68,7 +68,6 @@ public class MySqlVacancyDao implements VacancyDao {
             while (resultSet.next()) {
                 result.add(getVacancyFromResultSet(resultSet));
             }
-            statement.close();
             resultSet.close();
         } catch (SQLException e) {
             System.exit(-1);
@@ -136,28 +135,29 @@ public class MySqlVacancyDao implements VacancyDao {
         try {
             String query;
             StringBuilder skillsStr = new StringBuilder();
-            for (int i = 0; i < vacancy.getRequiredSkills().size() - 1; i++) {
-                skillsStr.append(vacancy.getRequiredSkills().get(i).toString());
-                skillsStr.append(" ");
+            if (!vacancy.getRequiredSkills().isEmpty()){
+                skillsStr.append(vacancy.getRequiredSkills().get(0));
+                for (int i = 0; i < vacancy.getRequiredSkills().size() - 1; i++) {
+                    skillsStr.append(vacancy.getRequiredSkills().get(i).toString());
+                    skillsStr.append(" ");
+                }
             }
             if (!vacancy.getRequiredSkills().isEmpty()) {
                 skillsStr.append(vacancy.getRequiredSkills().get(vacancy.getRequiredSkills().size() - 1).toString());
             }
-            query = "INSERT INTO " + TABLE + " (position, companyName, location, description, skills) VALUES " +
+            query = "INSERT INTO " + TABLE + " (position, companyName, location, description, skills, conditions) VALUES " +
                     "( '" + vacancy.getPosition() + "', '" +
                     vacancy.getCompanyName() + "', '" + vacancy.getLocation() + "', '" + vacancy.getDescription() +
-                    "', '" + skillsStr.toString() + "' );";
-            PreparedStatement statement = jdbcService.getConnection().prepareStatement(query,
-                    Statement.RETURN_GENERATED_KEYS);
-            statement.executeUpdate(query);
+                    "', '" + skillsStr.toString() + "', '" + vacancy.getConditions() + "' );";
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-            int affectedRows = statement.executeUpdate();
+            int affectedRows = preparedStatement.executeUpdate();
 
             if (affectedRows == 0) {
                 throw new SQLException("Creating vacancy failed, no rows affected.");
             }
 
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     vacancy.setId(generatedKeys.getLong(1));
                 } else {
@@ -165,7 +165,7 @@ public class MySqlVacancyDao implements VacancyDao {
                 }
             }
 
-            statement.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -187,6 +187,7 @@ public class MySqlVacancyDao implements VacancyDao {
         vacancy.setDescription(resultSet.getString("description"));
         vacancy.setLocation(resultSet.getString("location"));
         vacancy.setPosition(resultSet.getString("position"));
+        vacancy.setConditions(resultSet.getString("conditions"));
         String strSkills = resultSet.getString("skills").trim();
         String[] skills = new String[0];
         if (!strSkills.isEmpty()) {

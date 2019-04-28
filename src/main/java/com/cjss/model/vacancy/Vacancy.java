@@ -1,18 +1,27 @@
 package com.cjss.model.vacancy;
 
-import com.cjss.model.company.Company;
 import com.cjss.model.enums.Skill;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vacancy {
+public class Vacancy implements Serializable {
 
     private long id;
     private String position;
     private String companyName;
     private String location;
     private String description;
+    private String conditions;
+
+    public String getConditions() {
+        return conditions;
+    }
+
+    public void setConditions(String conditions) {
+        this.conditions = conditions;
+    }
 
     private List<Skill> requiredSkills = new ArrayList<>();
 

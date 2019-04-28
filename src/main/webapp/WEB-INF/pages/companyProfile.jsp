@@ -18,7 +18,7 @@
     </div>
 </header>
 <main>
-    <a href="<c:url value="/"/>">  <%--TODO profile edit--%>
+    <a href="<c:url value="/profile/company"/>">  <%--TODO profile edit--%>
         <div class="edit-btn">
             Edit
         </div>
@@ -66,15 +66,7 @@
         </div>
     </section>
 </main>
-<footer>
-    <div class="linksMenu">
-        <div class="link"><span>VK</span></div>
-        <div class="link">Facebook</div>
-        <div class="link"><span>Twitter</span></div>
-    </div>
-    <div class="TM">
-        <span>© 2019-2019 Evil Corp. All rights reserved.</span>
-    </div>
+<tags:footer/>
 </footer>
 </body>
 </html>

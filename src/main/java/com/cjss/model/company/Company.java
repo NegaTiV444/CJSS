@@ -1,6 +1,8 @@
 package com.cjss.model.company;
 
-public class Company {
+import java.io.Serializable;
+
+public class Company implements Serializable {
 
     private String org;
     private String name;

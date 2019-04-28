@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class CompanyProfilePageServlet extends HttpServlet {
 
+    private static final String CURRENT_USER_KEY = "current user";
     private static final String COMPANY_KEY = "company";
     private static final String EMAIL_KEY = "email";
     private static final String PASSWORD_KEY = "password";
@@ -30,17 +31,18 @@ public class CompanyProfilePageServlet extends HttpServlet {
             try {
                 company = companyDao.getCompany(email);
             } catch (NotFoundException e) {
-                resp.sendRedirect("registration-company?loginMsg=wrong.email.error");
+                resp.sendRedirect("../registration-company?loginMsg=wrong.email.error");
                 return;
             }
             if (company.getPassword().equals(password)) {
+                req.getSession().setAttribute(CURRENT_USER_KEY, company);
                 req.setAttribute(COMPANY_KEY, company);
                 req.getRequestDispatcher("/WEB-INF/pages/companyProfile.jsp").forward(req, resp);
             } else {
-                resp.sendRedirect("registration-company?loginMsg=wrong.password.error");
+                resp.sendRedirect("../registration-company?loginMsg=wrong.password.error");
             }
         } else {
-            resp.sendRedirect("registration-company");
+            resp.sendRedirect("../registration-company");
         }
     }
 
