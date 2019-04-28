@@ -1,5 +1,6 @@
 package com.cjss.web;
 
+import com.cjss.model.employee.Employee;
 import com.cjss.model.vacancy.MySqlVacancyDao;
 import com.cjss.model.vacancy.Vacancy;
 import com.cjss.model.vacancy.VacancyDao;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class VacanciesPageServlet extends HttpServlet {
 
+    private static final String CURRENT_USER_KEY = "current user";
     private static final String VACANCIES_KEY = "vacancies";
 
     private final VacancyDao vacancyDao = MySqlVacancyDao.getInstance();
@@ -27,6 +29,13 @@ public class VacanciesPageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        try {
+            Employee employee = (Employee)req.getSession().getAttribute(CURRENT_USER_KEY);
+            List<Vacancy> vacancies = vacancyDao.findVacancy(employee.getSkills());
+            req.setAttribute(VACANCIES_KEY, vacancies);
+            req.getRequestDispatcher("/WEB-INF/pages/vacancies.jsp").forward(req, resp);
+        } catch (ClassCastException e) {
+            resp.sendRedirect("registration-employee");
+        }
     }
 }

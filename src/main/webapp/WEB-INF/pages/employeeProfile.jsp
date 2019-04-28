@@ -23,6 +23,11 @@
     </div>
 </header>
 <main>
+    <div class="logout">
+        <form action="<c:url value="/vacancies"/>" method="post">
+            <button>Find vacancies for me</button>
+        </form>
+    </div>
     <div class="main-container">
         <div class="main-info">
             <div class="photo-container">
