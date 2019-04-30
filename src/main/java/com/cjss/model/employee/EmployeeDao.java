@@ -13,4 +13,5 @@ public interface EmployeeDao {
     Employee getEmployee (String email) throws NotFoundException;
     void addEmployee(Employee employee) throws AlreadyRegisteredException;
     void deleteEmployee(String email) throws NotFoundException;
+    void updateEmployee(Employee updatedEmployee) throws NotFoundException;
 }

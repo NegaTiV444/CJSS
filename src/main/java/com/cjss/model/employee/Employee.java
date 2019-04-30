@@ -12,14 +12,12 @@ public class Employee implements Serializable {
     private String password;
 
     private String name;
-    private int inSearch = 1;
     private String education;
     private String experience;
     private String hobbies;
     private String other;
     private String birthDate;
     private List<Skill> skills;
-    private List<String> messages;
 
     {
         education = "";
@@ -28,7 +26,6 @@ public class Employee implements Serializable {
         other = "";
         birthDate = "";
         skills = new ArrayList<>();
-        messages = new ArrayList<>();
     }
 
     public Employee(String email, String password) {
@@ -57,7 +54,11 @@ public class Employee implements Serializable {
     }
 
     public void setHobbies(String hobbies) {
-        this.hobbies = hobbies;
+        if (hobbies == null) {
+            this.hobbies = "";
+        } else {
+            this.hobbies = hobbies;
+        }
     }
 
     public String getName() {
@@ -73,7 +74,11 @@ public class Employee implements Serializable {
     }
 
     public void setOther(String other) {
-        this.other = other;
+        if (other == null) {
+            this.other = "";
+        } else {
+            this.other = other;
+        }
     }
 
     public String getPassword() {
@@ -84,16 +89,16 @@ public class Employee implements Serializable {
         return skills;
     }
 
-    public List<String> getMessages() {
-        return messages;
-    }
-
     public String getEducation() {
         return education;
     }
 
     public void setEducation(String education) {
-        this.education = education;
+        if (education == null) {
+            this.education = "";
+        } else {
+            this.education = education;
+        }
     }
 
     public String getExperience() {
@@ -101,15 +106,11 @@ public class Employee implements Serializable {
     }
 
     public void setExperience(String experience) {
-        this.experience = experience;
-    }
-
-    public int isInSearch() {
-        return inSearch;
-    }
-
-    public void setInSearch(int inSearch) {
-        this.inSearch = inSearch;
+        if (experience == null) {
+            this.experience = "";
+        } else {
+            this.experience = experience;
+        }
     }
 
 }

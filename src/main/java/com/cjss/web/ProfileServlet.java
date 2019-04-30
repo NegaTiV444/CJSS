@@ -20,9 +20,8 @@ public class ProfileServlet extends HttpServlet {
     private static final String PASSWORD_KEY = "password";
 
     private final HashService hashService = HashService.getInstance();
-
     private final CompanyDao companyDao = MySqlCompanyDao.getInstance();
-    private final EmployeeDao employeeDao = MySqlEmployeeDao.newInstance();
+    private final EmployeeDao employeeDao = MySqlEmployeeDao.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

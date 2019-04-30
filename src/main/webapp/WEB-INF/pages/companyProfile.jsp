@@ -36,10 +36,10 @@
     <section class="secondary-info">
         <div class="info-element">
             <div class="el-description">
-                ${company.description}
+                ${company.foundationDate}
             </div>
             <div class="el-title">
-                ${company.foundationDate}
+                Foundation date
             </div>
         </div>
         <div class="info-element">

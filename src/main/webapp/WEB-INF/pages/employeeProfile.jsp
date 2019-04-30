@@ -36,7 +36,7 @@
             <div class="name">${employee.name}</div>
             <div class="email">${employee.email}</div>
             <div class="date">${employee.birthDate}</div>
-            <div class="edit-button">Edit <i class="far fa-edit"></i></div>   <%--TODO profile edit--%>
+            <div class="edit-button"><a href="<c:url value="/profile/employee/edit"/>">Edit <i class="far fa-edit"></i></a></div>   <%--TODO profile edit--%>
         </div>
         <div class="information">
             <div class="element">
