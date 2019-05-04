@@ -28,7 +28,7 @@ public class SkillsService {
     public String getSkillsString(List<Skill> skills) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < skills.size(); i++) {
-            result.append(skills.get(i).toString() + " ");
+            result.append(skills.get(i).getValue() + " ");
         }
         return result.toString();
     }

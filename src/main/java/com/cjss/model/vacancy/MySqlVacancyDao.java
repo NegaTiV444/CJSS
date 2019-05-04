@@ -1,9 +1,6 @@
 package com.cjss.model.vacancy;
 
-import com.cjss.model.company.Company;
-import com.cjss.model.company.CompanyDao;
 import com.cjss.model.company.MySqlCompanyDao;
-import com.cjss.model.employee.Employee;
 import com.cjss.model.enums.Skill;
 import com.cjss.model.exceptions.NotFoundException;
 import com.cjss.utils.JDBCService;
@@ -115,7 +112,6 @@ public class MySqlVacancyDao implements VacancyDao {
             while (resultSet.next()) {
                 result.add(getVacancyFromResultSet(resultSet));
             }
-            statement.close();
             resultSet.close();
         } catch (SQLException e) {
             System.exit(-1);
@@ -141,7 +137,7 @@ public class MySqlVacancyDao implements VacancyDao {
         try {
             String query;
             StringBuilder skillsStr = new StringBuilder();
-            if (!vacancy.getRequiredSkills().isEmpty()){
+            if (!vacancy.getRequiredSkills().isEmpty()) {
                 skillsStr.append(vacancy.getRequiredSkills().get(0));
                 for (int i = 0; i < vacancy.getRequiredSkills().size() - 1; i++) {
                     skillsStr.append(vacancy.getRequiredSkills().get(i).toString());
@@ -156,13 +152,10 @@ public class MySqlVacancyDao implements VacancyDao {
                     vacancy.getCompanyName() + "', '" + vacancy.getLocation() + "', '" + vacancy.getDescription() +
                     "', '" + skillsStr.toString() + "', '" + vacancy.getConditions() + "' );";
             PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-
             int affectedRows = preparedStatement.executeUpdate();
-
             if (affectedRows == 0) {
                 throw new SQLException("Creating vacancy failed, no rows affected.");
             }
-
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     vacancy.setId(generatedKeys.getLong(1));
@@ -170,7 +163,6 @@ public class MySqlVacancyDao implements VacancyDao {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
-
             preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);

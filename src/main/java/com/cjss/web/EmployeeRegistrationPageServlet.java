@@ -42,7 +42,7 @@ public class EmployeeRegistrationPageServlet extends HttpServlet {
 
     private Employee getEmployeeFromRequest(HttpServletRequest req) {
         Employee employee = new Employee(req.getParameter("email"), req.getParameter("password"));
-        employee.setName(req.getParameter("firstName") + " " + req.getParameter("lastName"));
+        employee.setName(req.getParameter("first_name") + " " + req.getParameter("last_name"));
         employee = employeeService.fillEmployee(employee, req);
         return employee;
     }

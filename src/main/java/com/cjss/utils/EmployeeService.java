@@ -20,11 +20,11 @@ public class EmployeeService {
     }
 
     public Employee fillEmployee(Employee employee, HttpServletRequest req) {
-        employee.setEducation(req.getParameter("education").trim());
+        employee.setEducation(req.getParameter("education"));
         employee.setBirthDate(req.getParameter("date"));
-        employee.setOther(req.getParameter("other").trim());
-        employee.setExperience(req.getParameter("experience").trim());
-        employee.setHobbies(req.getParameter("hobbies").trim());
+        employee.setOther(req.getParameter("other"));
+        employee.setExperience(req.getParameter("experience"));
+        employee.setHobbies(req.getParameter("hobbies"));
         employee.getSkills().clear();
         employee.getSkills().addAll(skillsService.parseSkills(req.getParameterMap()));
         return employee;

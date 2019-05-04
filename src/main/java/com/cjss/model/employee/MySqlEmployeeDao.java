@@ -47,7 +47,6 @@ public class MySqlEmployeeDao implements EmployeeDao {
             while (resultSet.next()) {
                 result.add(getEmployeeFromResultSet(resultSet));
             }
-            statement.close();
             resultSet.close();
         } catch (SQLException e) {
             System.exit(-1);
@@ -145,7 +144,7 @@ public class MySqlEmployeeDao implements EmployeeDao {
                 query.append(" hobbies = '" + updatedEmployee.getHobbies() + "', ");
                 query.append(" other = '" + updatedEmployee.getOther() + "', ");
                 query.append(" birthDate = '" + updatedEmployee.getBirthDate() + "', ");
-                query.append(" skills = '" + skillsService.getSkillsString(updatedEmployee.getSkills()) + "', ");
+                query.append(" skills = '" + skillsService.getSkillsString(updatedEmployee.getSkills()) + "' ");
                 query.append(" WHERE email = '" + employee.getEmail() + "';");
                 statement.executeUpdate(query.toString());
             } else {

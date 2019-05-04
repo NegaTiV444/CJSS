@@ -43,7 +43,7 @@
                         <div class="lang">
                             <div>
                                 <input type="checkbox" name="JAVA" id="java"
-                                    <c:if test = "${fn:contains(requestScope.skills, 'JAVA')}">
+                                    <c:if test = "${fn:contains(requestScope.skills, 'Java')}">
                                        checked="checked"
                                     </c:if>
                                 >
@@ -51,7 +51,7 @@
                             </div>
                             <div>
                                 <input type="checkbox" name="PYTHON" id="python"
-                                <c:if test = "${fn:contains(requestScope.skills, 'PYTHON')}">
+                                <c:if test = "${fn:contains(requestScope.skills, 'Python')}">
                                        checked="checked"
                                 </c:if>
                                 >
@@ -67,7 +67,7 @@
                             </div>
                             <div>
                                 <input type="checkbox" name="CPP" id="cpp"
-                                <c:if test = "${fn:contains(requestScope.skills, 'CPP')}">
+                                <c:if test = "${fn:contains(requestScope.skills, 'C++')}">
                                        checked="checked"
                                 </c:if>
                                 >
@@ -77,7 +77,7 @@
                         <div class="lang">
                             <div>
                                 <input type="checkbox" name="DOTNET" id=".net"
-                                <c:if test = "${fn:contains(requestScope.skills, 'DOTNET')}">
+                                <c:if test = "${fn:contains(requestScope.skills, '.NET')}">
                                        checked="checked"
                                 </c:if>
                                 >
@@ -85,7 +85,7 @@
                             </div>
                             <div>
                                 <input type="checkbox" name="JS" id="js"
-                                <c:if test = "${fn:contains(requestScope.skills, 'JS')}">
+                                <c:if test = "${fn:contains(requestScope.skills, 'JavaScript')}">
                                        checked="checked"
                                 </c:if>
                                 >
@@ -93,7 +93,7 @@
                             </div>
                             <div>
                                 <input type="checkbox" name="HTMLCSS" id="htmlcss"
-                                <c:if test = "${fn:contains(requestScope.skills, 'HTMLCSS')}">
+                                <c:if test = "${fn:contains(requestScope.skills, 'HTML + CSS')}">
                                        checked="checked"
                                 </c:if>
                                 >
@@ -111,7 +111,7 @@
                         <div class="lang">
                             <div>
                                 <input type="checkbox" name="DELPHY" id="delphy"
-                                <c:if test = "${fn:contains(requestScope.skills, 'DELPHY')}">
+                                <c:if test = "${fn:contains(requestScope.skills, 'Delphy')}">
                                        checked="checked"
                                 </c:if>
                                 >
@@ -119,7 +119,7 @@
                             </div>
                             <div>
                                 <input type="checkbox" name="RUBY" id="ruby"
-                                <c:if test = "${fn:contains(requestScope.skills, 'RUBY')}">
+                                <c:if test = "${fn:contains(requestScope.skills, 'Ruby')}">
                                        checked="checked"
                                 </c:if>
                                 >
@@ -127,7 +127,7 @@
                             </div>
                             <div>
                                 <input type="checkbox" name="SWIFT" id="swift"
-                                <c:if test = "${fn:contains(requestScope.skills, 'SWIFT')}">
+                                <c:if test = "${fn:contains(requestScope.skills, 'Swift')}">
                                        checked="checked"
                                 </c:if>
                                 >
@@ -135,7 +135,7 @@
                             </div>
                             <div>
                                 <input type="checkbox" name="ANDROID" id="android"
-                                <c:if test = "${fn:contains(requestScope.skills, 'ANDROID')}">
+                                <c:if test = "${fn:contains(requestScope.skills, 'Android')}">
                                        checked="checked"
                                 </c:if>
                                 >
