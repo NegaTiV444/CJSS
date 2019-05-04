@@ -137,7 +137,7 @@ public class MySqlEmployeeDao implements EmployeeDao {
             if (resultSet.next()) {
                 employee = getEmployeeFromResultSet(resultSet);
                 query = new StringBuilder("UPDATE " + TABLE);
-                query.append(" SET name = '" + updatedEmployee.getHobbies() + "', ");
+                query.append(" SET name = '" + updatedEmployee.getName() + "', ");
                 query.append(" education = '" + updatedEmployee.getEducation() + "', ");
                 query.append(" birthDate = '" + updatedEmployee.getBirthDate() + "', ");
                 query.append(" experience = '" + updatedEmployee.getExperience() + "', ");
@@ -171,7 +171,7 @@ public class MySqlEmployeeDao implements EmployeeDao {
             skills = strSkills.split(" ");
         }
         for (int i = 0; i < skills.length; i++) {
-            employee.getSkills().add(Skill.valueOf(skills[i]));
+            employee.getSkills().add(Skill.valueOf(skills[i].toUpperCase()));
         }
         return employee;
     }

@@ -181,6 +181,7 @@ public class MySqlVacancyDao implements VacancyDao {
 
     private Vacancy getVacancyFromResultSet(ResultSet resultSet) throws SQLException {
         Vacancy vacancy = new Vacancy();
+        vacancy.setId(resultSet.getInt("id"));
         vacancy.setCompanyName(resultSet.getString("companyName"));
         vacancy.setDescription(resultSet.getString("description"));
         vacancy.setLocation(resultSet.getString("location"));
@@ -192,7 +193,7 @@ public class MySqlVacancyDao implements VacancyDao {
             skills = strSkills.split(" ");
         }
         for (String skill : skills) {
-            vacancy.getRequiredSkills().add(Skill.valueOf(skill));
+            vacancy.getRequiredSkills().add(Skill.valueOf(skill.toUpperCase()));
         }
         return vacancy;
     }

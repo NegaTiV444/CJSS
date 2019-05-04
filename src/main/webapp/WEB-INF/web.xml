@@ -104,6 +104,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>vacancy</servlet-name>
+        <servlet-class>com.cjss.web.VacancyPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>vacancy</servlet-name>
+        <url-pattern>/vacancies/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>about</servlet-name>
         <servlet-class>com.cjss.web.AboutPageServlet</servlet-class>
     </servlet>
@@ -112,5 +121,13 @@
         <url-pattern>/about</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>company</servlet-name>
+        <servlet-class>com.cjss.web.CompanyPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>company</servlet-name>
+        <url-pattern>/companies/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>

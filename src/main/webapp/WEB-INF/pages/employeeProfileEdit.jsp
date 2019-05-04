@@ -71,7 +71,7 @@
                                        checked="checked"
                                 </c:if>
                                 >
-                                <label for="cpp">CPP</label>
+                                <label for="cpp">C++</label>
                             </div>
                         </div>
                         <div class="lang">
@@ -89,7 +89,7 @@
                                        checked="checked"
                                 </c:if>
                                 >
-                                <label for="js">JS</label>
+                                <label for="js">JavaScript</label>
                             </div>
                             <div>
                                 <input type="checkbox" name="HTMLCSS" id="htmlcss"

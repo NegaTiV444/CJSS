@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <jsp:useBean id="vacancy" type="com.cjss.model.vacancy.Vacancy" scope="request"/>
-<jsp:useBean id="skills" type="java.util.ArrayList" scope="request"/>
 
 <!DOCTYPE html>
 <html>
@@ -29,9 +28,9 @@
                 ${vacancy.description}
             </div>
             <h3>Skills:</h3>
-            <ol class="skills"> <%-- TODO add skills--%>
-                <c:forEach var="skill" items="${skills}">
-                <li>${skill.toString}</li>
+            <ol class="skills">
+                <c:forEach var="skill" items="${vacancy.requiredSkills}">
+                <li>${skill.value}</li>
                 </c:forEach>
             </ol>
             <h3>Conditions:</h3>

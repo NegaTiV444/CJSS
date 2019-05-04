@@ -40,23 +40,17 @@ main {
     min-height: 40vw;
 }
 
-main h1 {
-    color: #444444;
-    padding-left: 20vw;
-}
-
 .content {
     width: 100%;
     padding: 0 20vw;
-    margin-bottom: 5em;
+    margin-top: 2vw;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
 }
 
-.vacancy {
-    padding: 1em 2em;
-    margin: 1em 0;
+.vacancie {
+    padding: 1vw 2em 2vw 2em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -66,12 +60,8 @@ main h1 {
     border: 1px solid white;
 }
 
-.vacancy:hover {
-    border: 1px solid #ffd800;
-}
-
-.title:hover {
-    color: #ffd800;
+h2 {
+    margin-bottom: 2vw;
 }
 
 .info {
@@ -83,9 +73,15 @@ main h1 {
     padding-right: 1em;
 }
 
-.description {
+.description,
+.duties,
+.conditions {
     word-break: break-all;
     font-size: 17px;
+}
+
+ol {
+    margin: 0;
 }
 
 footer {

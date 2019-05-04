@@ -34,7 +34,7 @@
                     </div>
                     <div>
                         <input type="checkbox" name="CPP" id="cpp">
-                        <label for="java">CPP</label>
+                        <label for="java">C++</label>
                     </div>
                 </div>
                 <div class="lang">
@@ -44,7 +44,7 @@
                     </div>
                     <div>
                         <input type="checkbox" name="JS" id="js">
-                        <label for="java">JS</label>
+                        <label for="java">JavaScript</label>
                     </div>
                     <div>
                         <input type="checkbox" name="HTMLCSS" id="htmlcss">

@@ -45,7 +45,9 @@
             </div>
             <div class="element">
                 <div class="information_item">Skills</div>
-                <div class="item_description">${requestScope.skills}</div>
+                <div class="item_description">
+                    <c:forEach var="skill" items="${employee.skills}">${skill.value} </c:forEach>
+                </div>
             </div>
             <div class="element">
                 <div class="information_item">Experience</div>
