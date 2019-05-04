@@ -11,6 +11,7 @@ public class Employee implements Serializable {
     private String email;
     private String password;
 
+    private long id;
     private String name;
     private String education;
     private String experience;
@@ -27,10 +28,17 @@ public class Employee implements Serializable {
         birthDate = "";
         skills = new ArrayList<>();
     }
-
     public Employee(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getEmail() {

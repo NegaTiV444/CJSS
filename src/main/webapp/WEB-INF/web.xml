@@ -41,6 +41,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>employee</servlet-name>
+        <servlet-class>com.cjss.web.EmployeePageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employee</servlet-name>
+        <url-pattern>/employees/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employees</servlet-name>
+        <servlet-class>com.cjss.web.EmployeesPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employees</servlet-name>
+        <url-pattern>/employees</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>profile</servlet-name>
         <servlet-class>com.cjss.web.ProfileServlet</servlet-class>
     </servlet>

@@ -19,7 +19,7 @@
             <h2 class="title">${vacancy.position}</h2>
             <div class="info">
                 <i class="fas fa-landmark"></i>
-                <span>${vacancy.companyName}</span>
+                <a href="<c:url value="/companies/${vacancy.companyName}"/>"><span>${vacancy.companyName}</span></a>
                 <i class="fas fa-map-marker-alt"></i>
                 <span>${vacancy.location}</span>
             </div>

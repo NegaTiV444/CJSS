@@ -35,10 +35,10 @@
                 <div class="item">Vacancies</div>
             </div>
         </a>
-        <a href="<c:url value="/resumes"/>">
+        <a href="<c:url value="/employees"/>">
             <div class="el">
-                <div class="count">1</div>
-                <div class="item">Resumes</div>
+                <div class="count">${requestScope.vacancies}</div>
+                <div class="item">Employees</div>
             </div>
         </a>
         <div class="el">

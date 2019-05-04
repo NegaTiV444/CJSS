@@ -7,6 +7,7 @@ import com.cjss.utils.HashService;
 import com.cjss.utils.JDBCService;
 import com.cjss.utils.SkillsService;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -88,6 +89,26 @@ public class MySqlEmployeeDao implements EmployeeDao {
     }
 
     @Override
+    public Employee getEmployee(int id) throws NotFoundException {
+        ResultSet resultSet;
+        Employee employee = null;
+        try {
+            String query = "SELECT * FROM " + TABLE + " WHERE id = '" + id + "' ;";
+            resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                employee = getEmployeeFromResultSet(resultSet);
+
+            } else {
+                throw new NotFoundException();
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            System.exit(-1);
+        }
+        return employee;
+    }
+
+    @Override
     public synchronized void addEmployee(Employee employee) throws AlreadyRegisteredException {
         ResultSet resultSet;
         try {
@@ -110,7 +131,18 @@ public class MySqlEmployeeDao implements EmployeeDao {
                     employee.getEmail() + "', '" + hashService.getHashAsString(employee.getPassword()) + "', '" + employee.getEducation() +
                     "', '" + employee.getExperience() + "', '" + skillsStr.toString() + "', '" +
                     employee.getHobbies() + "', '" + employee.getOther() + "', '" + employee.getBirthDate() + "' );";
-            statement.executeUpdate(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating employee failed, no rows affected.");
+            }
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    employee.setId(generatedKeys.getLong(1));
+                } else {
+                    throw new SQLException("Creating employee failed, no ID obtained.");
+                }
+            }
             resultSet.close();
         } catch (SQLException e) {
             System.exit(-1);
@@ -159,6 +191,7 @@ public class MySqlEmployeeDao implements EmployeeDao {
     private Employee getEmployeeFromResultSet(ResultSet resultSet) throws SQLException {
         Employee employee = new Employee(resultSet.getString("email"),
                 resultSet.getString("password"));
+        employee.setId(resultSet.getInt("id"));
         employee.setName(resultSet.getString("name"));
         employee.setEducation(resultSet.getString("education"));
         employee.setExperience(resultSet.getString("experience"));

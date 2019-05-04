@@ -16,7 +16,6 @@ public class CompanyPageServlet extends HttpServlet {
 
     private CompanyDao companyDao = MySqlCompanyDao.getInstance();
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Company company = companyDao.getCompany(req.getRequestURI().substring(req.getRequestURI().lastIndexOf('/') + 1));

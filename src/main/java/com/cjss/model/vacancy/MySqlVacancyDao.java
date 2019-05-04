@@ -160,7 +160,7 @@ public class MySqlVacancyDao implements VacancyDao {
                 if (generatedKeys.next()) {
                     vacancy.setId(generatedKeys.getLong(1));
                 } else {
-                    throw new SQLException("Creating user failed, no ID obtained.");
+                    throw new SQLException("Creating vacancy failed, no ID obtained.");
                 }
             }
             preparedStatement.close();

@@ -29,6 +29,17 @@ main {
 	background: linear-gradient(to top, #a5a5a5 0.5%, white 1%, #ededed) no-repeat;
 }
 
+.profile_photo {
+	max-height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	border: 2px solid white;
+}
+
+.profile_photo:hover {
+	cursor: pointer;
+}
+
 .main-container {
 	display: flex;
 	justify-content: space-between;
