@@ -3,8 +3,8 @@ package com.cjss.web;
 import com.cjss.model.employee.Employee;
 import com.cjss.model.employee.EmployeeDao;
 import com.cjss.model.employee.MySqlEmployeeDao;
-import com.cjss.model.enums.Skill;
 import com.cjss.model.exceptions.NotFoundException;
+import com.cjss.utils.SkillsService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 public class EmployeeProfilePageServlet extends HttpServlet {
 
@@ -21,7 +20,9 @@ public class EmployeeProfilePageServlet extends HttpServlet {
     private static final String EMAIL_KEY = "email";
     private static final String PASSWORD_KEY = "password";
     private static final String SKILLS_KEY = "skills";
-    private EmployeeDao employeeDao = MySqlEmployeeDao.newInstance();
+
+    private final SkillsService skillsService = SkillsService.getInstance();
+    private final EmployeeDao employeeDao = MySqlEmployeeDao.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,7 +41,7 @@ public class EmployeeProfilePageServlet extends HttpServlet {
             if (employee.getPassword().equals(password)) {
                 req.getSession().setAttribute(CURRENT_USER_KEY, employee);
                 req.setAttribute(EMPLOYEE_KEY, employee);
-                req.setAttribute(SKILLS_KEY, getSkillsString(employee.getSkills()));
+                req.setAttribute(SKILLS_KEY, skillsService.getSkillsString(employee.getSkills()));
                 req.getRequestDispatcher("/WEB-INF/pages/employeeProfile.jsp").forward(req, resp);
             } else {
                 resp.sendRedirect("../registration-employee?loginMsg=wrong.password.error");
@@ -50,11 +51,4 @@ public class EmployeeProfilePageServlet extends HttpServlet {
         }
     }
 
-    private String getSkillsString(List<Skill> skills) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < skills.size(); i++) {
-            result.append(skills.get(i).toString() + " ");
-        }
-        return result.toString();
-    }
 }

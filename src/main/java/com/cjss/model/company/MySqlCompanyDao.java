@@ -54,12 +54,13 @@ public class MySqlCompanyDao implements CompanyDao {
         ResultSet resultSet;
         Company company = null;
         try {
-            String sqlQuery = "SELECT * FROM " + TABLE + " WHERE name = '" + query + "' ;";
+            String sqlQuery = "SELECT * FROM " + TABLE + " WHERE name = '" + query + "';";
             resultSet = statement.executeQuery(sqlQuery);
             if (!resultSet.next()) {
-                sqlQuery = "SELECT * FROM " + TABLE + " WHERE email = '" + query + "' ;";
+                sqlQuery = "SELECT * FROM " + TABLE + " WHERE email = '" + query + "';";
                 resultSet = statement.executeQuery(sqlQuery);
             }
+            resultSet.beforeFirst();
             if (resultSet.next()) {
                 company = getCompanyFromResultSet(resultSet);
             } else {

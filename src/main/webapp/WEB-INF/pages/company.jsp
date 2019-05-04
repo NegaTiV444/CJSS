@@ -9,25 +9,12 @@
 <head>
     <title>Company</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/styles/company.css">
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
-<header>
-    <div class="logo">
-        <a href="<c:url value="/"/>"><h1>C.J.S.S.</h1></a>
-    </div>
-    <div class="logout">
-        <form action="<c:url value="/main"/>" method="post">
-            <button>Logout</button>
-        </form>
-    </div>
-</header>
+<tags:header/>
 <main>
-    <a href="<c:url value="/profile/company"/>">  <%--TODO profile edit--%>
-        <div class="edit-btn">
-            Edit
-        </div>
-    </a>
     <section class="main-info">
         <div class="company-name">
             ${company.name}

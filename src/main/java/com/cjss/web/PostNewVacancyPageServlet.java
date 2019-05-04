@@ -5,19 +5,19 @@ import com.cjss.model.enums.Skill;
 import com.cjss.model.vacancy.MySqlVacancyDao;
 import com.cjss.model.vacancy.Vacancy;
 import com.cjss.model.vacancy.VacancyDao;
+import com.cjss.utils.SkillsService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PostNewVacancyPageServlet extends HttpServlet {
 
     private static final String CURRENT_USER_KEY = "current user";
 
+    private final SkillsService skillsService = SkillsService.getInstance();
     private final VacancyDao vacancyDao = MySqlVacancyDao.getInstance();
 
     @Override
@@ -44,19 +44,10 @@ public class PostNewVacancyPageServlet extends HttpServlet {
         vacancy.setDescription(req.getParameter("description"));
         vacancy.setLocation(req.getParameter("location"));
         vacancy.setConditions(req.getParameter("conditions"));
-        vacancy.getRequiredSkills().addAll(parseSkills(req));
+        vacancy.getRequiredSkills().addAll(skillsService.parseSkills(req.getParameterMap()));
         vacancyDao.addVacancy(vacancy);
         resp.sendRedirect("vacancies");
     }
 
-    private List<Skill> parseSkills(HttpServletRequest req) {
-        List<Skill> skills = new ArrayList<>();
-        String temp;
-        for (Skill skill : Skill.values()) {
-            temp = req.getParameter(skill.toString());
-            if (temp != null)
-                skills.add(skill);
-        }
-        return skills;
-    }
+
 }

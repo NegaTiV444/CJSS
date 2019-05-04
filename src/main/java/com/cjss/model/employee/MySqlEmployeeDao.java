@@ -5,7 +5,9 @@ import com.cjss.model.exceptions.AlreadyRegisteredException;
 import com.cjss.model.exceptions.NotFoundException;
 import com.cjss.utils.HashService;
 import com.cjss.utils.JDBCService;
+import com.cjss.utils.SkillsService;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,8 +20,9 @@ import java.util.stream.Collectors;
 public class MySqlEmployeeDao implements EmployeeDao {
 
     private static final String TABLE = "employees";
-    private HashService hashService = HashService.getInstance();
-    private JDBCService jdbcService = JDBCService.getInstance();
+    private final SkillsService skillsService = SkillsService.getInstance();
+    private final HashService hashService = HashService.getInstance();
+    private final JDBCService jdbcService = JDBCService.getInstance();
     private Statement statement;
 
     private MySqlEmployeeDao() {
@@ -31,7 +34,7 @@ public class MySqlEmployeeDao implements EmployeeDao {
         }
     }
 
-    public static MySqlEmployeeDao newInstance() {
+    public static MySqlEmployeeDao getInstance() {
         return SingletonHandler.instance;
     }
 
@@ -45,7 +48,6 @@ public class MySqlEmployeeDao implements EmployeeDao {
             while (resultSet.next()) {
                 result.add(getEmployeeFromResultSet(resultSet));
             }
-            statement.close();
             resultSet.close();
         } catch (SQLException e) {
             System.exit(-1);
@@ -87,6 +89,26 @@ public class MySqlEmployeeDao implements EmployeeDao {
     }
 
     @Override
+    public Employee getEmployee(int id) throws NotFoundException {
+        ResultSet resultSet;
+        Employee employee = null;
+        try {
+            String query = "SELECT * FROM " + TABLE + " WHERE id = '" + id + "' ;";
+            resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                employee = getEmployeeFromResultSet(resultSet);
+
+            } else {
+                throw new NotFoundException();
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            System.exit(-1);
+        }
+        return employee;
+    }
+
+    @Override
     public synchronized void addEmployee(Employee employee) throws AlreadyRegisteredException {
         ResultSet resultSet;
         try {
@@ -105,12 +127,22 @@ public class MySqlEmployeeDao implements EmployeeDao {
             }
 
             query = "INSERT INTO " + TABLE + " (name, email, password, education, experience, skills, hobbies, " +
-                    "other, birthDate, inSearch) VALUES ( '" + employee.getName() + "', '" +
+                    "other, birthDate) VALUES ( '" + employee.getName() + "', '" +
                     employee.getEmail() + "', '" + hashService.getHashAsString(employee.getPassword()) + "', '" + employee.getEducation() +
                     "', '" + employee.getExperience() + "', '" + skillsStr.toString() + "', '" +
-                    employee.getHobbies() + "', '" + employee.getOther() + "', '" + employee.getBirthDate()
-                    + "', '" + employee.isInSearch() + "' );";
-            statement.executeUpdate(query);
+                    employee.getHobbies() + "', '" + employee.getOther() + "', '" + employee.getBirthDate() + "' );";
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating employee failed, no rows affected.");
+            }
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    employee.setId(generatedKeys.getLong(1));
+                } else {
+                    throw new SQLException("Creating employee failed, no ID obtained.");
+                }
+            }
             resultSet.close();
         } catch (SQLException e) {
             System.exit(-1);
@@ -127,23 +159,52 @@ public class MySqlEmployeeDao implements EmployeeDao {
         }
     }
 
+    @Override
+    public void updateEmployee(Employee updatedEmployee) throws NotFoundException {
+        ResultSet resultSet;
+        try {
+            Employee employee;
+            StringBuilder query = new StringBuilder("SELECT * FROM " + TABLE + " WHERE email = '" + updatedEmployee.getEmail() + "' ;");
+            resultSet = statement.executeQuery(query.toString());
+            if (resultSet.next()) {
+                employee = getEmployeeFromResultSet(resultSet);
+                query = new StringBuilder("UPDATE " + TABLE);
+                query.append(" SET name = '" + updatedEmployee.getName() + "', ");
+                query.append(" education = '" + updatedEmployee.getEducation() + "', ");
+                query.append(" birthDate = '" + updatedEmployee.getBirthDate() + "', ");
+                query.append(" experience = '" + updatedEmployee.getExperience() + "', ");
+                query.append(" hobbies = '" + updatedEmployee.getHobbies() + "', ");
+                query.append(" other = '" + updatedEmployee.getOther() + "', ");
+                query.append(" birthDate = '" + updatedEmployee.getBirthDate() + "', ");
+                query.append(" skills = '" + skillsService.getSkillsString(updatedEmployee.getSkills()) + "' ");
+                query.append(" WHERE email = '" + employee.getEmail() + "';");
+                statement.executeUpdate(query.toString());
+            } else {
+                throw new NotFoundException();
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            System.exit(-1);
+        }
+    }
+
     private Employee getEmployeeFromResultSet(ResultSet resultSet) throws SQLException {
         Employee employee = new Employee(resultSet.getString("email"),
                 resultSet.getString("password"));
+        employee.setId(resultSet.getInt("id"));
         employee.setName(resultSet.getString("name"));
         employee.setEducation(resultSet.getString("education"));
         employee.setExperience(resultSet.getString("experience"));
         employee.setHobbies(resultSet.getString("hobbies"));
         employee.setOther(resultSet.getString("other"));
         employee.setBirthDate(resultSet.getString("birthDate"));
-        employee.setInSearch(resultSet.getInt("inSearch"));
         String strSkills = resultSet.getString("skills").trim();
         String[] skills = new String[0];
         if (!strSkills.isEmpty()) {
             skills = strSkills.split(" ");
         }
         for (int i = 0; i < skills.length; i++) {
-            employee.getSkills().add(Skill.valueOf(skills[i]));
+            employee.getSkills().add(Skill.valueOf(skills[i].toUpperCase()));
         }
         return employee;
     }

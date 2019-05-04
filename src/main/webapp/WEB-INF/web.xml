@@ -32,6 +32,33 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>employee-profile-edit</servlet-name>
+        <servlet-class>com.cjss.web.EmployeeEditProfilePageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employee-profile-edit</servlet-name>
+        <url-pattern>/profile/employee/edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employee</servlet-name>
+        <servlet-class>com.cjss.web.EmployeePageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employee</servlet-name>
+        <url-pattern>/employees/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>employees</servlet-name>
+        <servlet-class>com.cjss.web.EmployeesPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>employees</servlet-name>
+        <url-pattern>/employees</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>profile</servlet-name>
         <servlet-class>com.cjss.web.ProfileServlet</servlet-class>
     </servlet>
@@ -95,6 +122,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>vacancy</servlet-name>
+        <servlet-class>com.cjss.web.VacancyPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>vacancy</servlet-name>
+        <url-pattern>/vacancies/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>about</servlet-name>
         <servlet-class>com.cjss.web.AboutPageServlet</servlet-class>
     </servlet>
@@ -103,5 +139,13 @@
         <url-pattern>/about</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>company</servlet-name>
+        <servlet-class>com.cjss.web.CompanyPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>company</servlet-name>
+        <url-pattern>/companies/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>

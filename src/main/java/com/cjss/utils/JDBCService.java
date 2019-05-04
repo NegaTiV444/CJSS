@@ -1,6 +1,5 @@
 package com.cjss.utils;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,7 +11,6 @@ public class JDBCService {
     private static final String PASSWORD = "12332155";
 
     private Connection connection;
-
 
     private JDBCService() {
         try {
