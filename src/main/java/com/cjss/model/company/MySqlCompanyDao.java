@@ -101,7 +101,7 @@ public class MySqlCompanyDao implements CompanyDao {
     public synchronized void deleteCompany(String name) {
         try {
             String query = "DELETE FROM " + TABLE + " WHERE name = '" + name + "' ;";
-            statement.executeQuery(query);
+            statement.executeUpdate(query);
         } catch (SQLException e) {
             System.exit(-1);
         }
