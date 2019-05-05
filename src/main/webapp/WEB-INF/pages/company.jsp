@@ -51,7 +51,7 @@
             <img src="${pageContext.servletContext.contextPath}/images/map.png" class="img-map">
         </div>
         <div class="description">
-            <div class="desc-title">${company.address}</div>
+            <div class="desc-title">${company.city} ${company.address}</div>
             <div class="desc-info">${company.description}</div>
         </div>
         <div class="company-contacts">

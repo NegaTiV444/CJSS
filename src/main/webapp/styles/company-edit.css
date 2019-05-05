@@ -32,7 +32,8 @@ main {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	background: url(/cjss/images/cmpn.jpg) no-repeat;
+	background: url(../img/cmpn.jpg);
+	background-repeat: no-repeat;
 	background-size: cover;
 	height: 30vw;
 	padding: 3vw 30vw;
@@ -46,7 +47,7 @@ input {
 	border: 1px solid #cecece;
 }
 
-input[type=text],
+input,
 textarea {
 	font-family: inherit;
 	padding: 0.3vw;
@@ -165,7 +166,7 @@ input[type=submit]:hover{
 	padding: 2vw 15vw;
 	background-color: #fffbf0;
 }
-
+.company-contacts,
 .description {
 	width: 40%;
 	font-size: 1.5vw;

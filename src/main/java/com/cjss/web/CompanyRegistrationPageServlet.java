@@ -4,6 +4,7 @@ import com.cjss.model.company.Company;
 import com.cjss.model.company.CompanyDao;
 import com.cjss.model.company.MySqlCompanyDao;
 import com.cjss.model.exceptions.AlreadyRegisteredException;
+import com.cjss.utils.CompanyService;
 import com.cjss.utils.HashService;
 
 import javax.servlet.ServletException;
@@ -18,9 +19,9 @@ public class CompanyRegistrationPageServlet extends HttpServlet {
     private static final String COMPANY_KEY = "company";
     private static final String THIS_NAME_OR_EMAIL_IS_ALREADY_TAKEN_ERROR = "name.or.email.is.taken.error";
 
-    private HashService hashService = HashService.getInstance();
-
-    private CompanyDao companyDao = MySqlCompanyDao.getInstance();
+    private final HashService hashService = HashService.getInstance();
+    private final CompanyDao companyDao = MySqlCompanyDao.getInstance();
+    private final CompanyService companyService = CompanyService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,10 +46,7 @@ public class CompanyRegistrationPageServlet extends HttpServlet {
 
     private Company getCompanyFromRequest(HttpServletRequest req) {
         Company company = new Company(req.getParameter("name"), req.getParameter("password"));
-        company.setEmail(req.getParameter("email"));
-        company.setSite(req.getParameter("site"));
-        company.setPhone(req.getParameter("phone"));
-        company.setFoundationDate(req.getParameter("fdate"));
+        company = companyService.fillCompany(company, req);
         company.setOrg(req.getParameter("org"));
         company.setCity(req.getParameter("city"));
         return company;

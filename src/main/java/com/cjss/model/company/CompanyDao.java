@@ -12,4 +12,5 @@ public interface CompanyDao {
     Company getCompany(String query) throws NotFoundException;
     void addCompany(Company company) throws AlreadyRegisteredException;
     void deleteCompany(String name) throws NotFoundException;
+    void updateCompany(Company company) throws NotFoundException;
 }
