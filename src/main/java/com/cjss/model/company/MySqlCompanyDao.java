@@ -107,6 +107,35 @@ public class MySqlCompanyDao implements CompanyDao {
         }
     }
 
+    @Override
+    public void updateCompany(Company updatedCompany) throws NotFoundException {
+        ResultSet resultSet;
+        try {
+            Company company;
+            StringBuilder query = new StringBuilder("SELECT * FROM " + TABLE + " WHERE name = '" + updatedCompany.getName() + "' ;");
+            resultSet = statement.executeQuery(query.toString());
+            if (resultSet.next()) {
+                company = getCompanyFromResultSet(resultSet);
+                query = new StringBuilder("UPDATE " + TABLE);
+                query.append(" SET email = '" + updatedCompany.getEmail() + "', ");
+                query.append(" site = '" + updatedCompany.getSite() + "', ");
+                query.append(" fdate = '" + updatedCompany.getFoundationDate() + "', ");
+                query.append(" address = '" + updatedCompany.getAddress() + "', ");
+                query.append(" phone = '" + updatedCompany.getPhone() + "', ");
+                query.append(" sphere = '" + updatedCompany.getSphere() + "', ");
+                query.append(" ecount = '" + updatedCompany.getEmployeesCount() + "', ");
+                query.append(" description = '" + updatedCompany.getDescription() + "' ");
+                query.append(" WHERE name = '" + company.getName() + "';");
+                statement.executeUpdate(query.toString());
+            } else {
+                throw new NotFoundException();
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            System.exit(-1);
+        }
+    }
+
     private Company getCompanyFromResultSet(ResultSet resultSet) throws SQLException {
         Company company = new Company(resultSet.getString("name"), resultSet.getString("password"));
         company.setCity(resultSet.getString("city"));

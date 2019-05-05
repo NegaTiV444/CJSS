@@ -33,9 +33,7 @@
             <div class="information">
                 <div class="element">
                     <div class="information_item">Education</div>
-                    <textarea form="profile-form" name="education" class="item_description" required>
-                        ${employee.education}
-                    </textarea>
+                    <textarea form="profile-form" name="education" class="item_description" required>${employee.education}</textarea>
                 </div>
                 <div class="element">
                     <div class="skills">

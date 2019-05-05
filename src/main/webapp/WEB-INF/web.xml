@@ -68,15 +68,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>editProfile</servlet-name>
-        <servlet-class>com.cjss.web.EmployeeEditProfilePageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>editProfile</servlet-name>
-        <url-pattern>/edit-profile</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>register-cmp</servlet-name>
         <servlet-class>com.cjss.web.CompanyRegistrationPageServlet</servlet-class>
     </servlet>
@@ -92,6 +83,15 @@
     <servlet-mapping>
         <servlet-name>profile-cmp</servlet-name>
         <url-pattern>/profile/company</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>company-profile-edit</servlet-name>
+        <servlet-class>com.cjss.web.CompanyEditProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>company-profile-edit</servlet-name>
+        <url-pattern>/profile/company/edit</url-pattern>
     </servlet-mapping>
 
     <servlet>

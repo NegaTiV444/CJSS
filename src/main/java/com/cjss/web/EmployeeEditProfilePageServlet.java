@@ -43,7 +43,7 @@ public class EmployeeEditProfilePageServlet extends HttpServlet {
             req.setAttribute(EMPLOYEE_KEY, employee);
             employeeDao.updateEmployee(employee);
             req.setAttribute(SKILLS_KEY, skillsService.getSkillsString(employee.getSkills()));
-            req.getRequestDispatcher("/WEB-INF/pages/employeeProfileEdit.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/pages/employeeProfile.jsp").forward(req, resp);
         } catch (ClassCastException e) {
             resp.sendRedirect("registration-employee");
         }
