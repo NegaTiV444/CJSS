@@ -11,8 +11,9 @@ public interface EmployeeDao {
     List<Employee> findEmployees();
     List<Employee> findEmployees(List<Skill> skills);
     Employee getEmployee (String email) throws NotFoundException;
-    Employee getEmployee (int id) throws NotFoundException;
+    Employee getEmployee (long id) throws NotFoundException;
     void addEmployee(Employee employee) throws AlreadyRegisteredException;
     void deleteEmployee(String email) throws NotFoundException;
+    void deleteEmployee(long id) throws NotFoundException;
     void updateEmployee(Employee updatedEmployee) throws NotFoundException;
 }

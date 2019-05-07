@@ -5,6 +5,7 @@ import com.cjss.model.company.CompanyDao;
 import com.cjss.model.company.MySqlCompanyDao;
 import com.cjss.model.exceptions.AlreadyRegisteredException;
 import com.cjss.model.exceptions.NotFoundException;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,6 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class MySqlCompanyDaoTest {
 
     private static final CompanyDao companyDao = MySqlCompanyDao.getInstance();
+
     private static final Company testCompany = new Company("Test Company 1", "pass1");
 
     @BeforeClass
@@ -36,11 +38,12 @@ public class MySqlCompanyDaoTest {
         testCompany.setSite("test.com");
     }
 
-    @Before
-    public void setup() {
+    @After
+    public void clean() {
         try {
             companyDao.deleteCompany(testCompany.getName());
-        } catch (NotFoundException e) {}
+        } catch (NotFoundException e) {
+        }
     }
 
     @Test
@@ -75,11 +78,17 @@ public class MySqlCompanyDaoTest {
         assertEquals(testCompany, companyDao.getCompany("Test Company 2"));
     }
 
-    @Test(expected = NotFoundException.class)
+    @Test
     public void deleteCompanyTest() throws AlreadyRegisteredException, NotFoundException {
         companyDao.addCompany(testCompany);
         companyDao.deleteCompany(testCompany.getName());
-        companyDao.getCompany(testCompany.getName());
+        companyDao.addCompany(testCompany);
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void deleteCompanyWithWrongNameTest() throws AlreadyRegisteredException, NotFoundException {
+        companyDao.addCompany(testCompany);
+        companyDao.deleteCompany("Wrong name");
     }
 
     @Test
