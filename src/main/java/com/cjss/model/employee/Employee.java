@@ -5,6 +5,7 @@ import com.cjss.model.enums.Skill;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Employee implements Serializable {
 
@@ -28,9 +29,23 @@ public class Employee implements Serializable {
         birthDate = "";
         skills = new ArrayList<>();
     }
+
     public Employee(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return email.equals(employee.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
     }
 
     public long getId() {

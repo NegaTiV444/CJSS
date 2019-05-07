@@ -89,7 +89,7 @@ public class MySqlEmployeeDao implements EmployeeDao {
     }
 
     @Override
-    public Employee getEmployee(int id) throws NotFoundException {
+    public Employee getEmployee(long id) throws NotFoundException {
         ResultSet resultSet;
         Employee employee = null;
         try {
@@ -119,11 +119,11 @@ public class MySqlEmployeeDao implements EmployeeDao {
             }
             StringBuilder skillsStr = new StringBuilder();
             for (int i = 0; i < employee.getSkills().size() - 1; i++) {
-                skillsStr.append(employee.getSkills().get(i).toString());
+                skillsStr.append(employee.getSkills().get(i).getValue());
                 skillsStr.append(" ");
             }
             if (!employee.getSkills().isEmpty()) {
-                skillsStr.append(employee.getSkills().get(employee.getSkills().size() - 1).toString());
+                skillsStr.append(employee.getSkills().get(employee.getSkills().size() - 1).getValue());
             }
 
             query = "INSERT INTO " + TABLE + " (name, email, password, education, experience, skills, hobbies, " +
@@ -150,10 +150,22 @@ public class MySqlEmployeeDao implements EmployeeDao {
     }
 
     @Override
-    public synchronized void deleteEmployee(String email) {
+    public synchronized void deleteEmployee(String email) throws NotFoundException {
         try {
+            getEmployee(email);
             String query = "DELETE FROM " + TABLE + " WHERE email = '" + email + "' ;";
-            statement.executeQuery(query);
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            System.exit(-1);
+        }
+    }
+
+    @Override
+    public void deleteEmployee(long id) throws NotFoundException {
+        try {
+            getEmployee(id);
+            String query = "DELETE FROM " + TABLE + " WHERE id = '" + id + "' ;";
+            statement.executeUpdate(query);
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -204,7 +216,7 @@ public class MySqlEmployeeDao implements EmployeeDao {
             skills = strSkills.split(" ");
         }
         for (int i = 0; i < skills.length; i++) {
-            employee.getSkills().add(Skill.valueOf(skills[i].toUpperCase()));
+            employee.getSkills().add(Skill.getSkill(skills[i]));
         }
         return employee;
     }

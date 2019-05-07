@@ -8,12 +8,12 @@ import java.util.List;
 
 public interface VacancyDao {
 
-    Vacancy getVacancy(int id) throws NotFoundException;
+    Vacancy getVacancy(long id) throws NotFoundException;
     List<Vacancy> findVacancy();
     List<Vacancy> findVacancy(String query);
     List<Vacancy> findVacancyByCompany (String companyName);
     List<Vacancy> findVacancy(List<Skill> skills);
     void addVacancy(Vacancy vacancy);
-    void deleteVacancy(Vacancy vacancy);
+    void deleteVacancy(long id) throws NotFoundException;
 
 }

@@ -1,6 +1,7 @@
 package com.cjss.model.company;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Company implements Serializable {
 
@@ -16,6 +17,19 @@ public class Company implements Serializable {
     private String address;
     private String description;
     private int employeesCount;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Company company = (Company) o;
+        return name.equals(company.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     {
         sphere = "";
