@@ -34,7 +34,7 @@ public class MySqlVacancyDao implements VacancyDao {
     }
 
     @Override
-    public Vacancy getVacancy(int id) throws NotFoundException {
+    public Vacancy getVacancy(long id) throws NotFoundException {
         ResultSet resultSet;
         Vacancy vacancy = null;
         try {
@@ -138,7 +138,6 @@ public class MySqlVacancyDao implements VacancyDao {
             String query;
             StringBuilder skillsStr = new StringBuilder();
             if (!vacancy.getRequiredSkills().isEmpty()) {
-                skillsStr.append(vacancy.getRequiredSkills().get(0));
                 for (int i = 0; i < vacancy.getRequiredSkills().size() - 1; i++) {
                     skillsStr.append(vacancy.getRequiredSkills().get(i).getValue());
                     skillsStr.append(" ");
@@ -170,9 +169,10 @@ public class MySqlVacancyDao implements VacancyDao {
     }
 
     @Override
-    public void deleteVacancy(Vacancy vacancy) {
+    public void deleteVacancy(long id) throws NotFoundException {
         try {
-            String query = "DELETE FROM " + TABLE + " WHERE id = '" + vacancy.getId() + "' ;";
+            getVacancy(id);
+            String query = "DELETE FROM " + TABLE + " WHERE id = '" + id + "' ;";
             statement.executeUpdate(query);
         } catch (SQLException e) {
             System.exit(-1);
@@ -191,9 +191,9 @@ public class MySqlVacancyDao implements VacancyDao {
         String[] skills = new String[0];
         if (!strSkills.isEmpty()) {
             skills = strSkills.split(" ");
-        }
-        for (String skill : skills) {
-            vacancy.getRequiredSkills().add(Skill.getSkill(skill));
+            for (String skill : skills) {
+                vacancy.getRequiredSkills().add(Skill.getSkill(skill));
+            }
         }
         return vacancy;
     }

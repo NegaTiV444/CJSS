@@ -6,7 +6,6 @@ import com.cjss.model.company.MySqlCompanyDao;
 import com.cjss.model.exceptions.AlreadyRegisteredException;
 import com.cjss.model.exceptions.NotFoundException;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;

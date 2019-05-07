@@ -6,7 +6,9 @@ import com.cjss.model.employee.MySqlEmployeeDao;
 import com.cjss.model.enums.Skill;
 import com.cjss.model.exceptions.AlreadyRegisteredException;
 import com.cjss.model.exceptions.NotFoundException;
-import org.junit.*;
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
