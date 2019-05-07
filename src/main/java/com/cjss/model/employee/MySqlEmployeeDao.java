@@ -44,11 +44,13 @@ public class MySqlEmployeeDao implements EmployeeDao {
         ResultSet resultSet;
         try {
             String query = "SELECT * FROM " + TABLE;
-            resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 result.add(getEmployeeFromResultSet(resultSet));
             }
             resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -74,7 +76,8 @@ public class MySqlEmployeeDao implements EmployeeDao {
         Employee employee = null;
         try {
             String query = "SELECT * FROM " + TABLE + " WHERE email = '" + email + "' ;";
-            resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 employee = getEmployeeFromResultSet(resultSet);
 
@@ -82,6 +85,7 @@ public class MySqlEmployeeDao implements EmployeeDao {
                 throw new NotFoundException();
             }
             resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -94,13 +98,15 @@ public class MySqlEmployeeDao implements EmployeeDao {
         Employee employee = null;
         try {
             String query = "SELECT * FROM " + TABLE + " WHERE id = '" + id + "' ;";
-            resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 employee = getEmployeeFromResultSet(resultSet);
 
             } else {
                 throw new NotFoundException();
             }
+            preparedStatement.close();
             resultSet.close();
         } catch (SQLException e) {
             System.exit(-1);
@@ -154,7 +160,9 @@ public class MySqlEmployeeDao implements EmployeeDao {
         try {
             getEmployee(email);
             String query = "DELETE FROM " + TABLE + " WHERE email = '" + email + "' ;";
-            statement.executeUpdate(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -165,7 +173,9 @@ public class MySqlEmployeeDao implements EmployeeDao {
         try {
             getEmployee(id);
             String query = "DELETE FROM " + TABLE + " WHERE id = '" + id + "' ;";
-            statement.executeUpdate(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
