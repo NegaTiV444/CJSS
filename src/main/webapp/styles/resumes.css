@@ -101,7 +101,6 @@ main h1 {
 }
 
 
-
 footer {
     height: 23vh;
     background-color: #666666;
@@ -145,7 +144,7 @@ footer {
 
 }
 
-@media (min-width:  560px) and (max-width: 980px) {
+@media (min-width: 560px) and (max-width: 980px) {
 
     .TM,
     .link {

@@ -1,7 +1,6 @@
 package com.cjss.web;
 
 import com.cjss.model.company.Company;
-import com.cjss.model.enums.Skill;
 import com.cjss.model.vacancy.MySqlVacancyDao;
 import com.cjss.model.vacancy.Vacancy;
 import com.cjss.model.vacancy.VacancyDao;
@@ -24,7 +23,7 @@ public class PostNewVacancyPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Company company = null;
         try {
-            company = (Company)req.getSession().getAttribute(CURRENT_USER_KEY);
+            company = (Company) req.getSession().getAttribute(CURRENT_USER_KEY);
             if (company == null) {
                 resp.sendRedirect("registration-company");
             } else {
@@ -38,7 +37,7 @@ public class PostNewVacancyPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Vacancy vacancy = new Vacancy();
-        Company company = (Company)req.getSession().getAttribute(CURRENT_USER_KEY);
+        Company company = (Company) req.getSession().getAttribute(CURRENT_USER_KEY);
         vacancy.setCompanyName(company.getName());
         vacancy.setPosition(req.getParameter("position"));
         vacancy.setDescription(req.getParameter("description"));

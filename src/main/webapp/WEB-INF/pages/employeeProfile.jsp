@@ -9,7 +9,8 @@
 <head>
     <title>C.J.S.S.</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/styles/profile.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
 <header>
@@ -34,7 +35,8 @@
             <div class="name">${employee.name}</div>
             <div class="email">${employee.email}</div>
             <div class="date">${employee.birthDate}</div>
-            <div class="edit-button"><a href="<c:url value="/profile/employee/edit"/>">Edit <i class="far fa-edit"></i></a></div>
+            <div class="edit-button"><a href="<c:url value="/profile/employee/edit"/>">Edit <i class="far fa-edit"></i></a>
+            </div>
             <form action="<c:url value="/vacancies"/>" method="post">
                 <button class="btnFind">Find vacancies for me</button>
             </form>

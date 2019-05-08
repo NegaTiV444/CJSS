@@ -121,7 +121,6 @@ footer {
     font-size: 1.3vw;
 }
 
-/* Стили для контейнера формы */
 .form-wrapper {
     width: 100%;
     box-sizing: border-box;
@@ -133,8 +132,6 @@ footer {
     background-color: white;
     border: 1px solid white;
 }
-
-/* Стили поля ввода текста */
 
 .form-wrapper input {
     width: 46vw;
@@ -150,7 +147,7 @@ footer {
 .form-wrapper input:focus {
     outline: 0;
     background: #fff;
-    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .8) inset;
 }
 
 .form-wrapper input::-webkit-input-placeholder {
@@ -171,7 +168,6 @@ footer {
     font-style: italic;
 }
 
-/* Кнопка отправки формы */
 .form-wrapper button {
     overflow: visible;
     position: relative;
@@ -186,20 +182,20 @@ footer {
     text-transform: uppercase;
     background-color: #444444;
     border-radius: 0 5px 5px 0;
-    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 }
 
-.form-wrapper button:hover{
+.form-wrapper button:hover {
     background: #ffd800;
 }
 
 .form-wrapper button:active,
-.form-wrapper button:focus{
+.form-wrapper button:focus {
     background: #c42f2f;
     outline: 0;
 }
 
-.form-wrapper button:before { /* стрелка влево */
+.form-wrapper button:before {
     content: '';
     position: absolute;
     border-width: 8px 8px 8px 0;
@@ -209,12 +205,12 @@ footer {
     left: -6px;
 }
 
-.form-wrapper button:hover:before{
+.form-wrapper button:hover:before {
     border-right-color: #ffd800;
 }
 
 .form-wrapper button:focus:before,
-.form-wrapper button:active:before{
+.form-wrapper button:active:before {
     border-right-color: #c42f2f;
 }
 
@@ -223,17 +219,17 @@ footer {
     padding: 0;
 }
 
-.cf:before, .cf:after{
-    content:"";
-    display:table;
+.cf:before, .cf:after {
+    content: "";
+    display: table;
 }
 
-.cf:after{
-    clear:both;
+.cf:after {
+    clear: both;
 }
 
-.cf{
-    zoom:1;
+.cf {
+    zoom: 1;
 }
 
 @media (max-width: 560px) {
@@ -253,7 +249,7 @@ footer {
     }
 }
 
-@media (min-width:  560px) and (max-width: 980px) {
+@media (min-width: 560px) and (max-width: 980px) {
 
     .TM,
     .link {

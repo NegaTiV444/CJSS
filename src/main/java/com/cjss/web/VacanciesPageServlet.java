@@ -30,7 +30,7 @@ public class VacanciesPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            Employee employee = (Employee)req.getSession().getAttribute(CURRENT_USER_KEY);
+            Employee employee = (Employee) req.getSession().getAttribute(CURRENT_USER_KEY);
             List<Vacancy> vacancies = vacancyDao.findVacancy(employee.getSkills());
             req.setAttribute(VACANCIES_KEY, vacancies);
             req.getRequestDispatcher("/WEB-INF/pages/vacancies.jsp").forward(req, resp);

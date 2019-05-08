@@ -57,13 +57,13 @@
             </c:if>
             <div class="contacts">
                 <input type="text" name="city" placeholder="City" required
-            <c:if test="${not empty param.city}">
-                   value="${param.city}"
-            </c:if>>
+                <c:if test="${not empty param.city}">
+                       value="${param.city}"
+                </c:if>>
                 <input type="date" name="fdate" placeholder="Foundation" required
-            <c:if test="${not empty param.fdate}">
-                   value="${param.fdate}"
-            </c:if>>
+                <c:if test="${not empty param.fdate}">
+                       value="${param.fdate}"
+                </c:if>>
             </div>
             <input type="email" name="email" placeholder="E-mail" required
             <c:if test="${not empty param.email}">
@@ -71,13 +71,13 @@
             </c:if>>
             <div class="contacts">
                 <input type="text" name="phone" placeholder="Telephone" required
-            <c:if test="${not empty param.phone}">
-                   value="${param.phone}"
-            </c:if>>
+                <c:if test="${not empty param.phone}">
+                       value="${param.phone}"
+                </c:if>>
                 <input type="site" name="site" placeholder="Site" required
-            <c:if test="${not empty param.site}">
-                   value="${param.site}"
-            </c:if>>
+                <c:if test="${not empty param.site}">
+                       value="${param.site}"
+                </c:if>>
             </div>
             <input type="password" name="password" id="password1" placeholder="Password" required>
             <input type="password" name="confirm_password" id="password2" placeholder="Confirm password" required>

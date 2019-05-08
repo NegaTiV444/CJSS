@@ -19,10 +19,10 @@
                 <c:if test="${not empty param.loginMsg}">
                     <c:choose>
                         <c:when test="${param.loginMsg == 'wrong.email.error'}">
-                            <p style="color:red">Account with such email doesn't exist  </p>
+                            <p style="color:red">Account with such email doesn't exist </p>
                         </c:when>
                         <c:when test="${param.loginMsg == 'wrong.password.error'}">
-                            <p style="color:red">Wrong password  </p>
+                            <p style="color:red">Wrong password </p>
                         </c:when>
                     </c:choose>
                 </c:if>
@@ -59,9 +59,9 @@
             <input type="password" name="confirm_password" id="password2" placeholder="Confirm password" required>
             <input type="email" name="email" placeholder="E-mail" required>
             <c:if test="${not empty param.registerMsg}">
-                <c:if  test="${param.registerMsg == 'email.is.taken.error'}">
+                <c:if test="${param.registerMsg == 'email.is.taken.error'}">
                     <p style="color:red">This email is already taken</p>
-                </c:if >
+                </c:if>
             </c:if>
             <textarea form="register-form" name="education" placeholder="Education"></textarea>
             <section class="skills">
@@ -124,7 +124,8 @@
             <input type="text" name="other" placeholder="Other skills">
             <textarea form="register-form" name="experience" placeholder="Experience"></textarea>
             <div class="agree">
-                By clicking "Register", you confirm that you have read, fully agree and accept the terms of the "Agreement on the provision of employment assistance services".
+                By clicking "Register", you confirm that you have read, fully agree and accept the terms of the
+                "Agreement on the provision of employment assistance services".
             </div>
             <input type="submit" value="REGISTER">
         </form>

@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class CompanyRegistrationPageServlet extends HttpServlet {
 
-    private static final String COMPANY_KEY = "company";
     private static final String THIS_NAME_OR_EMAIL_IS_ALREADY_TAKEN_ERROR = "name.or.email.is.taken.error";
 
     private final HashService hashService = HashService.getInstance();

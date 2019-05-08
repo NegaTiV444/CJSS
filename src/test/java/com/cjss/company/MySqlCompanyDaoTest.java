@@ -6,6 +6,7 @@ import com.cjss.model.company.MySqlCompanyDao;
 import com.cjss.model.exceptions.AlreadyRegisteredException;
 import com.cjss.model.exceptions.NotFoundException;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,14 @@ public class MySqlCompanyDaoTest {
         testCompany.setEmail("test@email.com");
         testCompany.setPhone("911");
         testCompany.setSite("test.com");
+    }
+
+    @AfterClass
+    public static void after() {
+        try {
+            companyDao.deleteCompany(testCompany.getName());
+        } catch (NotFoundException e) {
+        }
     }
 
     @After

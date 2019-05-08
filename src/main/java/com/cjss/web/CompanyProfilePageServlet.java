@@ -19,7 +19,7 @@ public class CompanyProfilePageServlet extends HttpServlet {
     private static final String EMAIL_KEY = "email";
     private static final String PASSWORD_KEY = "password";
 
-    private CompanyDao companyDao = MySqlCompanyDao.getInstance();
+    private final CompanyDao companyDao = MySqlCompanyDao.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
