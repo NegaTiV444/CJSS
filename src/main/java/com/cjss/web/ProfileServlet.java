@@ -36,7 +36,7 @@ public class ProfileServlet extends HttpServlet {
                 try {
                     companyDao.getCompany(email);
                     resp.sendRedirect("profile/company");
-                }catch (NotFoundException ex){
+                } catch (NotFoundException ex) {
                     resp.sendRedirect("registration-employee");
                 }
             }

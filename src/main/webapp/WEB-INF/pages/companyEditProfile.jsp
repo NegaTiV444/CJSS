@@ -9,7 +9,8 @@
 <head>
     <title>Company</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/styles/company-edit.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
 <header>
@@ -26,7 +27,7 @@
         </section>
         <section class="secondary-info">
             <div class="info-element">
-                <div class="el-description" >
+                <div class="el-description">
                     <input type="text" name="fdate" value="${company.foundationDate}">
                 </div>
                 <div class="el-title">
@@ -58,7 +59,8 @@
                 <div class="desc-title">
                     <input type="text" name="address" placeholder="Address" value="${company.address}">
                 </div>
-                <textarea class="desc-info" form="company-form" placeholder="Description" name="description">${company.description}</textarea>
+                <textarea class="desc-info" form="company-form" placeholder="Description"
+                          name="description">${company.description}</textarea>
             </div>
             <div class="company-contacts">
                 <div class="desc-title">Contacts</div>

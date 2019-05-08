@@ -70,7 +70,7 @@ main {
     align-items: center;
     justify-content: center;
     padding: 0.4vw 1vw;
-} 
+}
 
 .btnAdd:hover {
     background-color: #ffd800;
@@ -78,7 +78,7 @@ main {
     color: white;
 }
 
-.vacancy{
+.vacancy {
     padding: 1em 2em;
     margin: 1em 0;
     display: flex;
@@ -165,7 +165,7 @@ footer {
 
 }
 
-@media (min-width:  560px) and (max-width: 980px) {
+@media (min-width: 560px) and (max-width: 980px) {
 
     .TM,
     .link {

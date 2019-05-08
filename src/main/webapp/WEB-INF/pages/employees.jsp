@@ -9,7 +9,8 @@
 <head>
     <title>Employees</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/styles/resumes.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
 <tags:header/>
@@ -27,7 +28,8 @@
                     </div>
                     <div class="birth el">${employee.birthDate}</div>
                     <div class="education el">${employee.education}</div>
-                    <div class="skills el"><c:forEach var="skill" items="${employee.skills}">${skill.value} </c:forEach></div>
+                    <div class="skills el"><c:forEach var="skill"
+                                                      items="${employee.skills}">${skill.value} </c:forEach></div>
                 </div>
             </article>
         </c:forEach>

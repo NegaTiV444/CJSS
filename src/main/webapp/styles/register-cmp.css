@@ -40,52 +40,52 @@ a {
 }
 
 header .element {
-  margin-right: 1vw;
+    margin-right: 1vw;
 }
 
 header input {
-  height: 30px;
-  padding: 4px 8px;
-  outline: none;
+    height: 30px;
+    padding: 4px 8px;
+    outline: none;
 }
 
 .loginbutton {
-  height: 38px;
-  width: 60px;
-  background-color: #32affc;
-  border-color: transparent;
-  padding: 0 0.4vw;
-  box-shadow: none;
-  color: white;
-  font-weight: bold;
+    height: 38px;
+    width: 60px;
+    background-color: #32affc;
+    border-color: transparent;
+    padding: 0 0.4vw;
+    box-shadow: none;
+    color: white;
+    font-weight: bold;
 }
 
 .loginbutton:hover {
-  border-color: gold;
-  background-color: gold;
+    border-color: gold;
+    background-color: gold;
 }
 
 .loginSection {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .profile_photo {
-	max-height: 60px;
-	width: 60px;
-	border-radius: 50%;
-	border: 2px solid white;
+    max-height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: 2px solid white;
 }
 
 .profile_photo:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 body {
-	color: #515151;
-	background-color: white;
-	width: 100%;
-	margin: 0;
+    color: #515151;
+    background-color: white;
+    width: 100%;
+    margin: 0;
 }
 
 main {
@@ -93,84 +93,84 @@ main {
 }
 
 h2 {
-  text-align:center;
+    text-align: center;
 }
 
 .container {
-  border-radius: 5px;
-  background-color: #f3f3f3;
-  margin: 8vh 30vw;
-  max-width: 40vw;
-} 
+    border-radius: 5px;
+    background-color: #f3f3f3;
+    margin: 8vh 30vw;
+    max-width: 40vw;
+}
 
 #register-form {
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 form > input {
-  padding: 12px;
+    padding: 12px;
 }
 
 select,
 input {
-  font-family: inherit;
-  padding: 12px;
-  border: none;
-  border-radius: 4px;
-  margin: 5px 0;
-  opacity: 0.85;
-  display: inline-block;
-  font-size: 17px;
-  line-height: 20px;
-  text-decoration: none;
-  resize: none;
+    font-family: inherit;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none;
+    resize: none;
 }
 
 select:hover,
 input:hover {
-  opacity: 1;
-  outline: 2px solid gold;
+    opacity: 1;
+    outline: 2px solid gold;
 }
 
 select:focus,
 input:focus {
-  outline: 2px solid gold;
-  background-color: white;
+    outline: 2px solid gold;
+    background-color: white;
 }
 
 .contacts {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .contacts input {
-  width: 45%;
+    width: 45%;
 }
 
 input[type=password] {
-  background-size: 25px;
-  background-repeat: no-repeat;
-  background-position: 98% center;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: 98% center;
 }
 
 .agree {
-  font-size: 1vw;
-  padding: 0 0.4vw 1vw 0.4vw;
+    font-size: 1vw;
+    padding: 0 0.4vw 1vw 0.4vw;
 }
 
 input[type=submit] {
-  font-weight: bold;
-  background-color: #cecece;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 20px;
-  outline: none;
+    font-weight: bold;
+    background-color: #cecece;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 20px;
+    outline: none;
 }
 
 input[type=submit]:hover {
-  background-color: #ffd800;
+    background-color: #ffd800;
 }
 
 footer {
@@ -216,7 +216,7 @@ footer {
 
 }
 
-@media (min-width:  560px) and (max-width: 980px) {
+@media (min-width: 560px) and (max-width: 980px) {
 
     .TM,
     .link {

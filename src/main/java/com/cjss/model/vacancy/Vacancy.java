@@ -15,6 +15,17 @@ public class Vacancy implements Serializable {
     private String location;
     private String description;
     private String conditions;
+    private List<Skill> requiredSkills = new ArrayList<>();
+
+    public Vacancy() {
+    }
+
+    public Vacancy(String position, String companyName, String location, String description) {
+        this.position = position;
+        this.companyName = companyName;
+        this.location = location;
+        this.description = description;
+    }
 
     public String getConditions() {
         return conditions;
@@ -23,8 +34,6 @@ public class Vacancy implements Serializable {
     public void setConditions(String conditions) {
         this.conditions = conditions;
     }
-
-    private List<Skill> requiredSkills = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
@@ -37,16 +46,6 @@ public class Vacancy implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    public Vacancy() {
-    }
-
-    public Vacancy(String position, String companyName, String location, String description) {
-        this.position = position;
-        this.companyName = companyName;
-        this.location = location;
-        this.description = description;
     }
 
     public List<Skill> getRequiredSkills() {

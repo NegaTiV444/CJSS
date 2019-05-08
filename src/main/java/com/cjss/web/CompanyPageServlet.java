@@ -14,7 +14,7 @@ public class CompanyPageServlet extends HttpServlet {
 
     private static final String COMPANY_KEY = "company";
 
-    private CompanyDao companyDao = MySqlCompanyDao.getInstance();
+    private final CompanyDao companyDao = MySqlCompanyDao.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

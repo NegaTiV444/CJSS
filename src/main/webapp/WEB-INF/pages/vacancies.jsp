@@ -37,7 +37,7 @@
                     <span>${vacancy.location}</span>
                 </div>
                 <div class="description">
-                    ${vacancy.description}
+                        ${vacancy.description}
                 </div>
             </article>
         </c:forEach>
