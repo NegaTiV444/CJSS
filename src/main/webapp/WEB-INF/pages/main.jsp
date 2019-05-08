@@ -37,7 +37,7 @@
         </a>
         <a href="<c:url value="/employees"/>">
             <div class="el">
-                <div class="count">${requestScope.vacancies}</div>
+                <div class="count">${requestScope.employees}</div>
                 <div class="item">Employees</div>
             </div>
         </a>

@@ -19,6 +19,26 @@ a {
     text-decoration: none;
 }
 
+.btnEmployee {
+    background-color: #cccccc;
+    cursor: pointer;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    font-size: 1vw;
+    margin: 1vw;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4vw 1vw;
+}
+
+.btnEmployee:hover {
+    background-color: #ffd800;
+    border-color: #ffd800;
+    box-shadow: 0 0 5px gray;
+    color: #444444;
+}
+
 header .element {
   margin-right: 1vw;
 }

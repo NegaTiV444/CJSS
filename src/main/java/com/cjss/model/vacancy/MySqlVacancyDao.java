@@ -76,7 +76,7 @@ public class MySqlVacancyDao implements VacancyDao {
     @Override
     public List<Vacancy> findVacancy(String query) {
         List<Vacancy> vacancies = findVacancy();
-        if (query == null) {
+        if (query == null || query.trim().length() == 0) {
             return vacancies;
         }
         List<Vacancy> result;

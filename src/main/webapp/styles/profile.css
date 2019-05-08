@@ -19,6 +19,50 @@ a {
 	text-decoration: none;
 }
 
+.btnLogout {
+	background-color: #444444;
+	border: 1px solid white;
+	border-radius: 5px;
+	color: white;
+	display: flex;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 1vw;
+	align-items: center;
+	justify-content: center;
+	padding: 0.4vw 1vw;
+	cursor: pointer;
+}
+
+.btnLogout:hover {
+	background-color: #ffd800;
+	border-color: #ffd800;
+	box-shadow: 0 0 5px gray;
+	color: #444444;
+}
+
+.btnFind {
+	background-color: #cecece;
+	border: 1px solid white;
+	border-radius: 5px;
+	margin: 1vw;
+	color: white;
+	display: flex;
+	font-size: 18px;
+	align-items: center;
+	justify-content: center;
+	padding: 0.4vw 1vw;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.btnFind:hover {
+	background-color: #ffd800;
+	color: #444444;
+	border-color: #ffdd00;
+	box-shadow: 0 0 5px gray;
+}
+
 body {
 	margin: 0;
 }
@@ -89,7 +133,7 @@ main {
 	font-size: 18px;
 	border-radius: 5px;
 	background-color: #cecece;
-	color: #f3f3f3;
+	color: white;
 	font-weight: bold;
 }
 

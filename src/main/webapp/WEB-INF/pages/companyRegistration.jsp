@@ -31,7 +31,7 @@
     </form>
 </div>
 <a href="<c:url value="/registration-employee"/>">
-    <button>I'm an employee</button>
+    <button class="btnEmployee">I'm an employee</button>
 </a>
 <main>
     <div class="container">

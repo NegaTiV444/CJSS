@@ -16,12 +16,14 @@
 <tags:header/>
 <main>
     <h1>Vacancies</h1>
-    <div  class="content">
-        <form>
-            <input type="text" name="query" value="${param.query}">
-            <button> Find</button>
+    <div class="content">
+        <form class="form-wrapper cf">
+            <input type="text" name="query" placeholder="Find vacancy" value="${param.query}">
+            <button type="submit">Find</button>
         </form>
+
     </div>
+
     <section class="content">
         <c:forEach var="vacancy" items="${vacancies}">
             <article class="vacancy">
@@ -35,7 +37,7 @@
                     <span>${vacancy.location}</span>
                 </div>
                 <div class="description">
-                        ${vacancy.description}
+                    ${vacancy.description}
                 </div>
             </article>
         </c:forEach>
