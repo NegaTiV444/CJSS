@@ -6,6 +6,7 @@ import com.cjss.model.vacancy.MySqlVacancyDao;
 import com.cjss.model.vacancy.Vacancy;
 import com.cjss.model.vacancy.VacancyDao;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +34,14 @@ public class MySqlVacancyDaoTest {
         testVacancy.getRequiredSkills().add(Skill.JAVA);
         testVacancy.getRequiredSkills().add(Skill.C);
         testVacancy.getRequiredSkills().add(Skill.CPP);
+    }
+
+    @AfterClass
+    public static void after() {
+        try {
+            vacancyDao.deleteVacancy(testVacancy.getId());
+        } catch (NotFoundException e) {
+        }
     }
 
     @After
@@ -64,7 +73,7 @@ public class MySqlVacancyDaoTest {
     }
 
     @Test
-    public void findVacancyBySkillsWithWrongDataTest(){
+    public void findVacancyBySkillsWithWrongDataTest() {
         List<Skill> skills = new ArrayList<>(testVacancy.getRequiredSkills());
         vacancyDao.addVacancy(testVacancy);
         skills.clear();

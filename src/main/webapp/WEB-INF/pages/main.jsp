@@ -55,9 +55,13 @@
     </section>
     <section class="about_section">
         <div class="description">
-            <div class="desc-title"><a href="<c:url value="/about"/>" style="color: #ffd800;">C.J.S.S.</a><br>Centralized Job Searching System</div>
+            <div class="desc-title"><a href="<c:url value="/about"/>" style="color: #ffd800;">C.J.S.S.</a><br>Centralized
+                Job Searching System
+            </div>
             <div class="desc-info">
-                An evil corporation is a trope in popular culture that portrays a corporation as ignoring social responsibility in order to make money for its shareholders. Evil corporations can be seen to represent the danger of combining capitalism with larger hubris.
+                An evil corporation is a trope in popular culture that portrays a corporation as ignoring social
+                responsibility in order to make money for its shareholders. Evil corporations can be seen to represent
+                the danger of combining capitalism with larger hubris.
             </div>
         </div>
         <div class="map">

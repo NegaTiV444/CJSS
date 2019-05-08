@@ -7,6 +7,7 @@ import com.cjss.model.enums.Skill;
 import com.cjss.model.exceptions.AlreadyRegisteredException;
 import com.cjss.model.exceptions.NotFoundException;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +35,14 @@ public class MySqlEmployeeDaoTest {
         testEmployee.getSkills().add(Skill.ANDROID);
         testEmployee.getSkills().add(Skill.JAVA);
         testEmployee.getSkills().add(Skill.SWIFT);
+    }
+
+    @AfterClass
+    public static void after() {
+        try {
+            employeeDao.deleteEmployee(testEmployee.getEmail());
+        } catch (NotFoundException e) {
+        }
     }
 
     @After
