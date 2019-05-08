@@ -104,15 +104,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>resumes</servlet-name>
-        <servlet-class>com.cjss.web.ResumesPageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>resumes</servlet-name>
-        <url-pattern>/resumes</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>vacancies</servlet-name>
         <servlet-class>com.cjss.web.VacanciesPageServlet</servlet-class>
     </servlet>
@@ -146,6 +137,15 @@
     <servlet-mapping>
         <servlet-name>company</servlet-name>
         <url-pattern>/companies/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>vacanciesManagement</servlet-name>
+        <servlet-class>com.cjss.web.VacanciesManagementPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>vacanciesManagement</servlet-name>
+        <url-pattern>/companies/vacanciesManagement</url-pattern>
     </servlet-mapping>
 
 </web-app>

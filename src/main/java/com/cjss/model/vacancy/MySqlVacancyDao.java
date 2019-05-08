@@ -39,13 +39,15 @@ public class MySqlVacancyDao implements VacancyDao {
         Vacancy vacancy = null;
         try {
             String query = "SELECT * FROM " + TABLE + " WHERE id = '" + id + "' ;";
-            resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 vacancy = getVacancyFromResultSet(resultSet);
             } else {
                 throw new NotFoundException();
             }
             resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -58,11 +60,13 @@ public class MySqlVacancyDao implements VacancyDao {
         ResultSet resultSet;
         try {
             String query = "SELECT * FROM " + TABLE;
-            resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 result.add(getVacancyFromResultSet(resultSet));
             }
             resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -72,7 +76,7 @@ public class MySqlVacancyDao implements VacancyDao {
     @Override
     public List<Vacancy> findVacancy(String query) {
         List<Vacancy> vacancies = findVacancy();
-        if (query == null) {
+        if (query == null || query.trim().length() == 0) {
             return vacancies;
         }
         List<Vacancy> result;
@@ -108,11 +112,13 @@ public class MySqlVacancyDao implements VacancyDao {
         ResultSet resultSet;
         try {
             String query = "SELECT * FROM " + TABLE + " WHERE companyName = '" + companyName + "' ;";
-            resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 result.add(getVacancyFromResultSet(resultSet));
             }
             resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -173,7 +179,9 @@ public class MySqlVacancyDao implements VacancyDao {
         try {
             getVacancy(id);
             String query = "DELETE FROM " + TABLE + " WHERE id = '" + id + "' ;";
-            statement.executeUpdate(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }

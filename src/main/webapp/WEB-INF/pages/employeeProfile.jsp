@@ -18,15 +18,13 @@
     </div>
     <div class="logout">
         <form action="<c:url value="/main"/>" method="post">
-            <button>Logout</button>
+            <button class="btnLogout">Logout</button>
         </form>
     </div>
 </header>
 <main>
-    <div class="logout">
-        <form action="<c:url value="/vacancies"/>" method="post">
-            <button>Find vacancies for me</button>
-        </form>
+    <div>
+
     </div>
     <div class="main-container">
         <div class="main-info">
@@ -36,7 +34,10 @@
             <div class="name">${employee.name}</div>
             <div class="email">${employee.email}</div>
             <div class="date">${employee.birthDate}</div>
-            <div class="edit-button"><a href="<c:url value="/profile/employee/edit"/>">Edit <i class="far fa-edit"></i></a></div>   <%--TODO profile edit--%>
+            <div class="edit-button"><a href="<c:url value="/profile/employee/edit"/>">Edit <i class="far fa-edit"></i></a></div>
+            <form action="<c:url value="/vacancies"/>" method="post">
+                <button class="btnFind">Find vacancies for me</button>
+            </form>
         </div>
         <div class="information">
             <div class="element">

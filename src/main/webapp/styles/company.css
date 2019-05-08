@@ -31,9 +31,30 @@ main {
 	position: relative;
 }
 
+.btnLogout {
+	background-color: #444444;
+	border: 1px solid white;
+	border-radius: 5px;
+	color: white;
+	display: flex;
+	font-size: 1vw;
+	margin: 1vw;
+	align-items: center;
+	justify-content: center;
+	padding: 0.4vw 1vw;
+	cursor: pointer;
+}
+
+.btnLogout:hover {
+	background-color: #ffd800;
+	border-color: #ffd800;
+	box-shadow: 0 0 5px gray;
+	color: #444444;
+}
+
 .edit-btn {
 	position: absolute;
-	right: 2vw;
+	right: 4vw;
 	top: 2vw;
 	width: auto;
 	padding: 1vw 1.5vw;
@@ -45,6 +66,24 @@ main {
 }
 
 .edit-btn:hover{
+	background-color: #ffd800;
+	cursor: pointer;
+}
+
+.vacancies-management-btn {
+	position: absolute;
+	left: 4vw;
+	top: 2vw;
+	width: auto;
+	padding: 1vw 1.5vw;
+	font-size: 18px;
+	border-radius: 5px;
+	color: #5b5b5b;
+	font-weight: bold;
+	background-color: #cecece;
+}
+
+.vacancies-management-btn:hover {
 	background-color: #ffd800;
 	cursor: pointer;
 }

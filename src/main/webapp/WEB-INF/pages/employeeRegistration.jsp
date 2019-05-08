@@ -40,7 +40,9 @@
         </header>
     </form>
 </div>
-<a href="<c:url value="/registration-company"/>"><button>I'm a company</button></a>
+<a href="<c:url value="/registration-company"/>">
+    <button class="btnCompany">I'm a company</button>
+</a>
 <main>
     <div class="container">
         <form method="post" id="register-form">

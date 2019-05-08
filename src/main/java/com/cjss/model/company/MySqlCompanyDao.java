@@ -5,6 +5,7 @@ import com.cjss.model.exceptions.NotFoundException;
 import com.cjss.utils.HashService;
 import com.cjss.utils.JDBCService;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,11 +38,13 @@ public class MySqlCompanyDao implements CompanyDao {
         ResultSet resultSet;
         try {
             String query = "SELECT * FROM " + TABLE;
-            resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 result.add(getCompanyFromResultSet(resultSet));
             }
             resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -55,10 +58,12 @@ public class MySqlCompanyDao implements CompanyDao {
         Company company = null;
         try {
             String sqlQuery = "SELECT * FROM " + TABLE + " WHERE name = '" + query + "';";
-            resultSet = statement.executeQuery(sqlQuery);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+            resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()) {
                 sqlQuery = "SELECT * FROM " + TABLE + " WHERE email = '" + query + "';";
-                resultSet = statement.executeQuery(sqlQuery);
+                preparedStatement = jdbcService.getConnection().prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+                resultSet = preparedStatement.executeQuery();
             }
             resultSet.beforeFirst();
             if (resultSet.next()) {
@@ -67,6 +72,7 @@ public class MySqlCompanyDao implements CompanyDao {
                 throw new NotFoundException();
             }
             resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -78,7 +84,8 @@ public class MySqlCompanyDao implements CompanyDao {
         ResultSet resultSet;
         try {
             String query = "SELECT * FROM " + TABLE + " WHERE name = '" + company.getName() + "' ;";
-            resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            resultSet = preparedStatement.executeQuery();
             if (resultSet.first()) {
                 throw new AlreadyRegisteredException();
             }
@@ -90,8 +97,9 @@ public class MySqlCompanyDao implements CompanyDao {
                     + company.getPhone() + "', '" + company.getSite() + "', '" + company.getAddress() + "', '"
                     + company.getFoundationDate() + "', '" + company.getSphere() + "', '"
                     + company.getDescription() + "', '" + company.getEmployeesCount() + "' );";
-            statement.executeUpdate(query);
+            preparedStatement.executeUpdate(query);
             resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -102,7 +110,9 @@ public class MySqlCompanyDao implements CompanyDao {
         try {
             getCompany(name);
             String query = "DELETE FROM " + TABLE + " WHERE name = '" + name + "' ;";
-            statement.executeUpdate(query);
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }
@@ -114,7 +124,8 @@ public class MySqlCompanyDao implements CompanyDao {
         try {
             Company company;
             StringBuilder query = new StringBuilder("SELECT * FROM " + TABLE + " WHERE name = '" + updatedCompany.getName() + "' ;");
-            resultSet = statement.executeQuery(query.toString());
+            PreparedStatement preparedStatement = jdbcService.getConnection().prepareStatement(query.toString(), Statement.RETURN_GENERATED_KEYS);
+            resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 company = getCompanyFromResultSet(resultSet);
                 query = new StringBuilder("UPDATE " + TABLE);
@@ -127,11 +138,12 @@ public class MySqlCompanyDao implements CompanyDao {
                 query.append(" ecount = '" + updatedCompany.getEmployeesCount() + "', ");
                 query.append(" description = '" + updatedCompany.getDescription() + "' ");
                 query.append(" WHERE name = '" + company.getName() + "';");
-                statement.executeUpdate(query.toString());
+                preparedStatement.executeUpdate(query.toString());
             } else {
                 throw new NotFoundException();
             }
             resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.exit(-1);
         }

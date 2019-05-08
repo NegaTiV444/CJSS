@@ -18,7 +18,7 @@
     </div>
     <div class="logout">
         <form action="<c:url value="/main"/>" method="post">
-            <button>Logout</button>
+            <button class="btnLogout">Logout</button>
         </form>
     </div>
 </header>
@@ -26,6 +26,11 @@
     <a href="<c:url value="/profile/company/edit"/>">
         <div class="edit-btn">
             Edit
+        </div>
+    </a>
+    <a href="<c:url value="/companies/vacanciesManagement"/>">
+        <div class="vacancies-management-btn">
+            Vacancies management
         </div>
     </a>
     <section class="main-info">
