@@ -45,7 +45,7 @@ public class PostNewVacancyPageServlet extends HttpServlet {
         vacancy.setConditions(req.getParameter("conditions"));
         vacancy.getRequiredSkills().addAll(skillsService.parseSkills(req.getParameterMap()));
         vacancyDao.addVacancy(vacancy);
-        resp.sendRedirect("vacancies");
+        resp.sendRedirect("companies/vacanciesManagement");
     }
 
 

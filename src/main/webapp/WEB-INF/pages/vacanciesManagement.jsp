@@ -31,11 +31,11 @@
                         <input type="submit" hidden>
                     </form>
                     <script>
-                        function deleteClick() {
+                        function deleteClick${vacancy.id}() {
                             document.forms["delete${vacancy.id}"].submit();
                         }
                     </script>
-                    <i class="fas fa-times" onclick="deleteClick()"></i>
+                    <i class="fas fa-times" onclick="deleteClick${vacancy.id}()"></i>
                 </div>
                 <div class="info">
                     <i class="fas fa-landmark"></i>
