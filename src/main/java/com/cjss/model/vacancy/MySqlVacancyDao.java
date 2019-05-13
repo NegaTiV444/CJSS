@@ -149,7 +149,7 @@ public class MySqlVacancyDao implements VacancyDao {
                     skillsStr.append(" ");
                 }
             }
-            if (vacancy.getRequiredSkills().size() > 1) {
+            if (vacancy.getRequiredSkills().size() >= 1) {
                 skillsStr.append(vacancy.getRequiredSkills().get(vacancy.getRequiredSkills().size() - 1).getValue());
             }
             query = "INSERT INTO " + TABLE + " (position, companyName, location, description, skills, conditions) VALUES " +

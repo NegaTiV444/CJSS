@@ -8,7 +8,7 @@ public enum Skill {
     CPP("C++"),
     DOTNET(".NET"),
     JS("JavaScript"),
-    HTMLCSS("HTML + CSS"),
+    HTMLCSS("HTML+CSS"),
     DELPHY("Delphy"),
     PHP("PHP"),
     RUBY("Ruby"),
@@ -39,7 +39,7 @@ public enum Skill {
                 return Skill.DOTNET;
             case "JAVASCRIPT":
                 return Skill.JS;
-            case "HTML + CSS":
+            case "HTML+CSS":
                 return Skill.HTMLCSS;
             case "DELPHY":
                 return Skill.DELPHY;
